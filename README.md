@@ -1,6 +1,7 @@
-#### Luke Schlessinger
+## React Investing Dashboard
 
-#### React Investing Dashboard
+##### Luke Schlessinger
+
 
 ##### Description
 * Single page dynamic React App which utilizes separate APIs to display stock market graphs and stock ticker information. 
@@ -21,7 +22,6 @@
  * User is able to create, edit, and delete stock ticker components. 
 
 ##### Tools for MVP
-(List the tools, frameworks, libraries, APIs, modules, resources, languages, etc that will be used to create your MVP. Be specific.)
  * www.alphavantage.co API for stock ticker information. I will need to find a second free stocks API due to API call limits. I plan on having one API for stock graphs and another for the stock ticker components.
  * React, React Hooks for reusable components and to hold state.
  * CSS Grid for component layouts.

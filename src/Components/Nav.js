@@ -19,7 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Stock from './Stock';
 
-const drawerWidth = 180;
+const drawerWidth = 170;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -156,16 +156,6 @@ export default function MiniDrawer() {
 					))}
 				</List>
 				<Divider />
-				<List>
-					{[ 'All mail', 'Trash', 'Spam' ].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
 			</Drawer>
 			<main className={classes.content}>
 				<div className={classes.toolbar} />

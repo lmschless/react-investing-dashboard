@@ -21,10 +21,22 @@ export default function Stocks() {
 
 	useEffect(() => {
 		const getStockData = async () => {
-			const result = await axios(
-				'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
-			);
-			setData(result.data['Meta Data']);
+			const result = {
+				'Meta Data': {
+					'1. Information':
+						'Weekly Prices (open, high, low, close) and Volumes',
+					'2. Symbol': 'IBM',
+					'3. Last Refreshed': '2020-05-29',
+					'4. Time Zone': 'US/Eastern'
+				}
+			};
+			// LIVE API:
+			// const result = await axios(
+			// 	'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
+			// );
+			setData(result['Meta Data']);
+			//  LIVE API:
+			// setData(result.data['Meta Data']);
 		};
 		getStockData();
 	}, []);
@@ -47,15 +59,15 @@ export default function Stocks() {
 					<Typography gutterBottom variant="h5" component="h2">
 						IBM{' '}
 					</Typography>
-					<Typography variant="body2" color="textSecondary" component="p">
-						<ul>
-							{Object.values(data).map((item) => {
-								return <li>{item}</li>;
-							})}
+					{/* <Typography variant="body2" color="textSecondary" component="p"> */}
+					<div>
+						{Object.values(data).map((item) => {
+							return <li>{item}</li>;
+						})}
 
-							{/* {data.metaData.map((item) => <li>{item}</li>)} */}
-						</ul>
-					</Typography>
+						{/* {data.metaData.map((item) => <li>{item}</li>)} */}
+					</div>
+					{/* </Typography> */}
 				</CardContent>
 			</CardActionArea>
 			<CardActions>

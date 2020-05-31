@@ -9,7 +9,7 @@ export default function StockList() {
 		gridColumnGap: '.75em',
 		gridRowGap: '1em',
 		minHeight: '80vh'
-		// padding: '2em',
+		// padding: '2em'
 		// margin: '5em'
 	};
 

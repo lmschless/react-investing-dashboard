@@ -1,6 +1,8 @@
-## React Investing Dashboard
+## React Investing Dashboard 
+## Capstone Project for Epicodus React-JS
+## June 2020
 
-##### Luke Schlessinger
+###### By Luke Schlessinger
 
 
 ##### Description
@@ -34,7 +36,7 @@
 
 ##### Tools for Additional Features
  * Firebase - I would like to add multiple features that would require a database but I will finish a MVP first.
- * 
+ * I think I could use Yahoo Finance News API for this. I would need to query this API using the user input and display the top news results in a new component. 
  * jQuery Autocomplete to handle partial user input. I would also need to make sure I pass this API query correctly so I receive a response back. Not sure if I would use the API results as the "autocomplete suggestions". 
 
 ##### Additional Information

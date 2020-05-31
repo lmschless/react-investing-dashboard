@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,11 +30,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MiniDrawer() {
 	const classes = useStyles();
-	const theme = useTheme();
 
 	return (
 		<div className={classes.root}>
-			<CssBaseline />
 			<AppBar position="fixed">
 				<Toolbar>
 					<Typography variant="h6" noWrap>

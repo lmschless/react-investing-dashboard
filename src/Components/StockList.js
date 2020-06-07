@@ -4,7 +4,7 @@ import Stock from './Stock';
 export default function StockList() {
 	const gridContainer = {
 		display: 'grid',
-		gridTemplateColumns: 'repeat(auto-fill, minmax(18em, 6fr))',
+		gridTemplateColumns: 'repeat(auto-fill, minmax(18em, 5fr))',
 		gridTemplateRows: 'repeat(auto-fill, .5fr)',
 		gridColumnGap: '.75em',
 		gridRowGap: '1em',

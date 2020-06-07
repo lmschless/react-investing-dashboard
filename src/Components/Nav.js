@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 import StockList from './StockList';
 import NewsFeed from './NewsFeed';
+import NewsCard from './NewsCard';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -48,7 +49,8 @@ export default function MiniDrawer() {
 				<StockList />
 				{/* </Typography> */}
 			</main>
-			<NewsFeed />
+			<NewsCard />
+			{/* <NewsFeed /> */}
 		</div>
 	);
 }

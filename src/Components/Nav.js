@@ -4,8 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
+import styled from 'styled-components';
 
 import StockList from './StockList';
+import NewsFeed from './NewsFeed';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -46,6 +48,7 @@ export default function MiniDrawer() {
 				<StockList />
 				{/* </Typography> */}
 			</main>
+			<NewsFeed />
 		</div>
 	);
 }

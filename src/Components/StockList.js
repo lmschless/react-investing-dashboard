@@ -24,8 +24,6 @@ export default function StockList() {
 				<Stock />
 				<Stock />
 				<Stock />
-				<Stock />
-				<Stock />
 			</div>
 		</React.Fragment>
 	);

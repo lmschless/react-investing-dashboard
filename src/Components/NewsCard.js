@@ -13,15 +13,19 @@ import NewsCard from './NewsCard';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
+		marginTop: '10vh',
 		display: 'flex',
+		// flexDirection: 'column',
 		flexWrap: 'wrap',
 		justifyContent: 'space-around',
 		overflow: 'hidden',
 		backgroundColor: theme.palette.background.paper
 	},
 	gridList: {
-		width: 400,
-		height: 450
+		display: 'grid',
+		gridTemplateColumns: '1fr',
+		width: 250
+		// height: '80vh'
 	},
 	icon: {
 		color: 'rgba(255, 255, 255, 0.54)'
@@ -47,13 +51,17 @@ export default function TitlebarGridList() {
 
 	return (
 		<div className={classes.root}>
-			<GridList cellHeight={180} className={classes.gridList}>
-				<GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
+			<GridList cellHeight={250} className={classes.gridList}>
+				<GridListTile
+					key="Subheader"
+					cols={1}
+					style={{ height: 'auto', marginTop: '100px' }}
+				>
 					<ListSubheader component="div">December</ListSubheader>
 				</GridListTile>
 				{Array.from(data).map((tile) => (
 					<GridListTile key={tile.img}>
-						<img src={tile.img} alt={tile.title} />
+						<img src={tile.urlToImage} alt={tile.title} />
 						<GridListTileBar
 							title={tile.title}
 							subtitle={<span>by: {tile.author}</span>}

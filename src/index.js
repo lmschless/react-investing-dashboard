@@ -10,6 +10,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 const darkTheme = createMuiTheme({
 	palette: {
 		type: 'dark'
+	},
+	gridListTileBar: {
+		fontSize: '.2rem'
 	}
 });
 

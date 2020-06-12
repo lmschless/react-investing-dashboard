@@ -24,11 +24,16 @@ const useStyles = makeStyles((theme) => ({
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		width: 250
-		// height: '80vh'
+		width: 250,
+		height: '80vh'
 	},
 	icon: {
 		color: 'rgba(255, 255, 255, 0.54)'
+	},
+	text: {
+		fontSize: '1px',
+		whiteSpace: 'wrap',
+		backgroundColor: 'black'
 	}
 }));
 
@@ -51,28 +56,17 @@ export default function TitlebarGridList() {
 
 	return (
 		<div className={classes.root}>
-			<GridList cellHeight={250} className={classes.gridList}>
-				<GridListTile
-					key="Subheader"
-					cols={1}
-					style={{ height: 'auto', marginTop: '100px' }}
-				>
-					<ListSubheader component="div">December</ListSubheader>
+			<GridList cellHeight={220} className={classes.gridList}>
+				<GridListTile key="Subheader" cols={1} style={{ height: '220' }}>
+					<ListSubheader component="div">Investing News</ListSubheader>
 				</GridListTile>
 				{Array.from(data).map((tile) => (
 					<GridListTile key={tile.img}>
 						<img src={tile.urlToImage} alt={tile.title} />
 						<GridListTileBar
+							className={classes.text}
 							title={tile.title}
-							subtitle={<span>by: {tile.author}</span>}
-							actionIcon={
-								<IconButton
-									aria-label={`info about ${tile.title}`}
-									className={classes.icon}
-								>
-									<InfoIcon />
-								</IconButton>
-							}
+							sutitle={<span>by: {tile.author}</span>}
 						/>
 					</GridListTile>
 				))}

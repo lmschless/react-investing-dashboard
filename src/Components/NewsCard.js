@@ -10,6 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import styled from 'styled-components';
 import axios from 'axios';
 import NewsCard from './NewsCard';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -31,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
 		color: 'rgba(255, 255, 255, 0.54)'
 	},
 	text: {
-		fontSize: '1px',
-		whiteSpace: 'wrap',
-		backgroundColor: 'black'
+		fontSize: '1'
 	}
 }));
+
+const textStyles = {
+	fontSize: '1px'
+};
 
 export default function TitlebarGridList() {
 	const [ data, setData ] = useState({ test: [] });
@@ -57,16 +60,16 @@ export default function TitlebarGridList() {
 	return (
 		<div className={classes.root}>
 			<GridList cellHeight={220} className={classes.gridList}>
-				<GridListTile key="Subheader" cols={1} style={{ height: '220' }}>
+				<GridListTile key="Subheader" cols={2} style={{ height: '180' }}>
 					<ListSubheader component="div">Investing News</ListSubheader>
 				</GridListTile>
 				{Array.from(data).map((tile) => (
 					<GridListTile key={tile.img}>
 						<img src={tile.urlToImage} alt={tile.title} />
 						<GridListTileBar
-							className={classes.text}
+							style={textStyles}
 							title={tile.title}
-							sutitle={<span>by: {tile.author}</span>}
+							subtitle={<span>by: {tile.author}</span>}
 						/>
 					</GridListTile>
 				))}

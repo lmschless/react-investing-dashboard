@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function MiniDrawer() {
+export default function Nav() {
 	const classes = useStyles();
 
 	return (

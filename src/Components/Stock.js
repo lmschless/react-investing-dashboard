@@ -2,16 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles({
 	root: {
@@ -56,33 +53,30 @@ export default function Stocks() {
 
 	return (
 		<Card className={classes.root}>
-			<CardActionArea>
-				<CardMedia
-					component="img"
-					alt="Stock placeholder image"
-					height="120"
-					image={image}
-					title="Stock Ticker Card"
-				/>
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="h2">
-						IBM{' '}
-					</Typography>
-					{/* <Typography variant="body2" color="textSecondary" component="p"> */}
-					<div>
-						{Object.values(data).map((item) => {
-							return <li>{item}</li>;
-						})}
+			{/* <CardActionArea> */}
+			<CardMedia
+				component="img"
+				alt="Stock placeholder image"
+				height="120"
+				image={image}
+				title="Stock Ticker Card"
+			/>
+			<CardContent>
+				<Typography gutterBottom variant="h5" component="h2">
+					IBM{' '}
+				</Typography>
+				{/* <Typography variant="body2" color="textSecondary" component="p"> */}
+				<div>
+					{Object.values(data).map((item) => {
+						return <li>{item}</li>;
+					})}
 
-						{/* {data.metaData.map((item) => <li>{item}</li>)} */}
-					</div>
-					{/* </Typography> */}
-				</CardContent>
-			</CardActionArea>
+					{/* {data.metaData.map((item) => <li>{item}</li>)} */}
+				</div>
+				{/* </Typography> */}
+			</CardContent>
+			{/* </CardActionArea> */}
 			<CardActions style={cardStyles}>
-				<IconButton aria-label="add">
-					<AddCircleIcon />
-				</IconButton>
 				<IconButton aria-label="edit">
 					<EditIcon />
 				</IconButton>

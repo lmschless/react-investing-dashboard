@@ -14,22 +14,19 @@ import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		marginTop: '10vh',
+		// marginTop: '10vh',
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
 		justifyContent: 'space-around',
-		overflow: 'hidden',
-		backgroundColor: theme.palette.background.paper
+		overflow: 'hidden'
+		// backgroundColor: theme.palette.background.paper
 	},
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
 		width: '18vw',
 		height: '80vh'
-	},
-	icon: {
-		color: 'rgba(255, 255, 255, 0.54)'
 	},
 	text: {
 		fontSize: '1'

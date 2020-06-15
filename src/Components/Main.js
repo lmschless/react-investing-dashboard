@@ -6,9 +6,9 @@ export default function Main() {
 	return (
 		<React.Fragment>
 			<Nav />
-			<center>
+			{/* <center>
 				<Footer />
-			</center>
+			</center> */}
 		</React.Fragment>
 	);
 }

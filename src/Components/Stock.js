@@ -8,6 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles({
 	root: {
@@ -45,6 +49,11 @@ export default function Stocks() {
 	// const symbol = data.["Meta Data"];
 	// console.log(symbol);
 	const image = require('./../assets/stock-placeholder.jpg');
+
+	const cardStyles = {
+		justifyContent: 'center'
+	};
+
 	return (
 		<Card className={classes.root}>
 			<CardActionArea>
@@ -70,13 +79,16 @@ export default function Stocks() {
 					{/* </Typography> */}
 				</CardContent>
 			</CardActionArea>
-			<CardActions>
-				<Button size="small" color="primary">
-					Share
-				</Button>
-				<Button size="small" color="primary">
-					Learn More
-				</Button>
+			<CardActions style={cardStyles}>
+				<IconButton aria-label="add">
+					<AddCircleIcon />
+				</IconButton>
+				<IconButton aria-label="edit">
+					<EditIcon />
+				</IconButton>
+				<IconButton aria-label="delete">
+					<DeleteIcon />
+				</IconButton>
 			</CardActions>
 		</Card>
 	);

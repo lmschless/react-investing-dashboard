@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		marginTop: '10vh',
 		display: 'flex',
-		// flexDirection: 'column',
+		flexDirection: 'column',
 		flexWrap: 'wrap',
 		justifyContent: 'space-around',
 		overflow: 'hidden',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		width: 250,
+		width: '18vw',
 		height: '80vh'
 	},
 	icon: {
@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const textStyles = {
-	fontSize: '1px'
-};
+// const textStyles = {
+// 	fontSize: '1px'
+// };
 
 export default function TitlebarGridList() {
 	const [ data, setData ] = useState({ test: [] });
@@ -60,16 +60,16 @@ export default function TitlebarGridList() {
 	return (
 		<div className={classes.root}>
 			<GridList cellHeight={220} className={classes.gridList}>
-				<GridListTile key="Subheader" cols={2} style={{ height: '180' }}>
+				{/* <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
 					<ListSubheader component="div">Investing News</ListSubheader>
-				</GridListTile>
+				</GridListTile> */}
 				{Array.from(data).map((tile) => (
 					<GridListTile key={tile.img}>
 						<img src={tile.urlToImage} alt={tile.title} />
 						<GridListTileBar
-							style={textStyles}
+							className={classes.text}
 							title={tile.title}
-							subtitle={<span>by: {tile.author}</span>}
+							sutitle={<span>by: {tile.author}</span>}
 						/>
 					</GridListTile>
 				))}

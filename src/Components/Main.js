@@ -5,10 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-
+import Stock from './Stock';
 import Footer from './Footer';
-
-import StockList from './StockList';
 import NewsCard from './NewsCard';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
-		padding: theme.spacing(0, 1),
+		padding: theme.spacing(0, 1)
 		// necessary for content to be below app bar
-		...theme.mixins.toolbar
+		// ...theme.mixins.toolbar
 	},
 	content: {
 		flexGrow: 1,
@@ -34,6 +32,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main() {
 	const classes = useStyles();
+	const gridContainer = {
+		display: 'grid',
+		gridTemplateColumns: 'repeat(auto-fill, minmax(18em, 5fr))',
+		gridTemplateRows: 'repeat(auto-fill, .5fr)',
+		gridColumnGap: '.75em',
+		gridRowGap: '1em',
+		minHeight: '80vh'
+		// padding: '2em'
+		// margin: '5em'
+	};
 
 	return (
 		<React.Fragment>
@@ -48,7 +56,18 @@ export default function Main() {
 				<main className={classes.content}>
 					{/* <div className={classes.toolbar} /> */}
 					{/* <Typography paragraph> */}
-					<StockList />
+
+					{/* <StockList /> */}
+					<div style={gridContainer}>
+						<Stock />
+						<Stock />
+						<Stock />
+						<Stock />
+						<Stock />
+						<Stock />
+						<Stock />
+						<Stock />
+					</div>
 					{/* </Typography> */}
 				</main>
 				<NewsCard />

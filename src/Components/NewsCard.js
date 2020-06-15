@@ -3,13 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+
 // import tileData from './tileData';
 import styled from 'styled-components';
 import axios from 'axios';
-import NewsCard from './NewsCard';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,30 +40,55 @@ export default function TitlebarGridList() {
 	useEffect(() => {
 		const getNews = async () => {
 			const result = await axios(
-				'http://newsapi.org/v2/everything?q="stock market"&sources=bloomberg&sortBy=publishedAt&apiKey=90ddee78a57f435fa9efe02754a6176a'
+				'http://newsapi.org/v2/everything?q="stock market"&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
 			);
 			console.log(result.data.articles);
-			setData(result.data.articles);
+
+			// filters out responses that have a null title, author, image, etc.
+			const filtered = result.data.articles
+				.filter(({ title, author, publishedAt, urlToImage, url }) =>
+					[ title, author, publishedAt, urlToImage, url ].every(
+						(prop) => prop !== null
+					)
+				)
+				.map(
+					({
+						title,
+						author,
+						publishedAt: date,
+						urlToImage: image,
+						url: link
+					}) => ({
+						title,
+						author,
+						date,
+						image,
+						link
+					})
+				);
+			// setData(result.data.articles);
+			setData(filtered);
 		};
 		getNews();
 	}, []);
-	console.log(data);
+	console.log('data:');
+	console.log({ data });
 
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
-			<GridList cellHeight={220} className={classes.gridList}>
+			<GridList cellHeight={280} className={classes.gridList}>
 				{/* <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
 					<ListSubheader component="div">Investing News</ListSubheader>
 				</GridListTile> */}
 				{Array.from(data).map((tile) => (
-					<GridListTile key={tile.img}>
-						<img src={tile.urlToImage} alt={tile.title} />
+					<GridListTile key={tile.link}>
+						<img src={tile.image} alt={tile.title} />
 						<GridListTileBar
 							className={classes.text}
 							title={tile.title}
-							sutitle={<span>by: {tile.author}</span>}
+							subtitle={<span>{tile.date}</span>}
 						/>
 					</GridListTile>
 				))}

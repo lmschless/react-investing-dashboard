@@ -43,7 +43,7 @@ export default function TitlebarGridList() {
 	useEffect(() => {
 		const getNews = async () => {
 			const result = await axios(
-				'http://newsapi.org/v2/everything?q="stock market"&sortBy=publishedAt&apiKey=90ddee78a57f435fa9efe02754a6176a'
+				'http://newsapi.org/v2/everything?q="stock market"&sources=bloomberg&sortBy=publishedAt&apiKey=90ddee78a57f435fa9efe02754a6176a'
 			);
 			console.log(result.data.articles);
 			setData(result.data.articles);

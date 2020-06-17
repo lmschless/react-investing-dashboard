@@ -64,11 +64,15 @@ export default function Stocks(props) {
 			/>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="h2">
-					IBM {props.name}
+					{props.name}
 				</Typography>
-				{/* <Typography variant="body2" color="textSecondary" component="p"> */}
-				<div>{/* {data.metaData.map((item) => <li>{item}</li>)} */}</div>
-				{/* </Typography> */}
+				<Typography variant="body2" color="textSecondary" component="p">
+					<div>
+						Open: {props.open}
+						<li>{props.close}</li>
+						<li>{props.change}</li>
+					</div>
+				</Typography>
 			</CardContent>
 			{/* </CardActionArea> */}
 			<CardActions style={cardStyles}>

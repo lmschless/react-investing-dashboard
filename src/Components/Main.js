@@ -41,11 +41,15 @@ export class Main extends Component {
 	}
 
 	componentDidMount = async () => {
-		const result = await axios(
-			'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
+		const results = await axios(
+			'https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM'
 		);
-		console.log(result);
-		const data = result.data['Meta Data'];
+		// console.log(result);
+		const data = results.data['Global Quote'];
+
+		let result = {
+			name: data['2. Symbol']
+		};
 		this.setState({ stocks: data });
 		console.log(this.state.stocks);
 	};
@@ -96,24 +100,23 @@ export class Main extends Component {
 			// padding: '2em'
 			// margin: '5em'
 		};
-
+		const stock = this.state.stocks;
+		console.log(stock);
 		return (
 			<React.Fragment>
 				<div className={classes.root}>
-					{/* <AppBar position="fixed">
-				<Toolbar>
-					<Typography variant="h6" noWrap>
-						Luke's Investing Portfolio
-					</Typography>
-				</Toolbar>
-			</AppBar> */}
 					<main className={classes.content}>
 						{/* <div className={classes.toolbar} /> */}
 						{/* <Typography paragraph> */}
 
 						{/* <StockList /> */}
 						<div style={gridContainer}>
-							{/* <Stock name= */}
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+
 							{/* {Object.values(data).map((stock) => {
 							return <Stock name={stock.symbol} image={stock.urlToImage} />;
 						})} */}

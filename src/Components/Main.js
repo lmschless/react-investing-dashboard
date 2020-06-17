@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Stock from './Stock';
 import Footer from './Footer';
 import NewsCard from './NewsCard';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -31,7 +32,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main() {
+	const [ data, setData ] = useState({ metaData: [] });
+
+	useEffect(() => {
+		const getStockData = async () => {
+			// hard coded
+			// const result = {
+			// 	'Meta Data': {
+			// 		'1. Information':
+			// 			'Weekly Prices (open, high, low, close) and Volumes',
+			// 		'2. Symbol': 'IBM',
+			// 		'3. Last Refreshed': '2020-05-29',
+			// 		'4. Time Zone': 'US/Eastern'
+			// 	}
+			// };
+			//////////////////////
+			// LIVE API:
+			const result = await axios(
+				'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
+			);
+			///// hard coded:
+			// setData(result['Meta Data']);
+			//  LIVE API:
+			setData(result.data['Meta Data']);
+		};
+		getStockData();
+	}, []);
+	console.log('Main data:');
+	console.log({ data });
+	// const symbol = data.["Meta Data"];
+	// console.log(symbol);
+	const image = require('./../assets/stock-placeholder.jpg');
+
 	const classes = useStyles();
+
 	const gridContainer = {
 		display: 'grid',
 		gridTemplateColumns: 'repeat(auto-fill, minmax(18em, 5fr))',
@@ -59,18 +93,25 @@ export default function Main() {
 
 					{/* <StockList /> */}
 					<div style={gridContainer}>
+						{/* {Object.values(data).map((stock) => {
+							return <Stock name={stock.symbol} image={stock.urlToImage} />;
+						})} */}
+
+						{Array.from(data).map((stock) => (
+							<Stock key={stock.symbol} name={stock.symbol} img={image} />
+						))}
+
+						{/* <Stock />
 						<Stock />
 						<Stock />
 						<Stock />
 						<Stock />
 						<Stock />
-						<Stock />
-						<Stock />
-						<Stock />
+						<Stock /> */}
 					</div>
 					{/* </Typography> */}
 				</main>
-				<NewsCard />
+				{/* <NewsCard /> */}
 			</div>
 			<Footer />
 		</React.Fragment>

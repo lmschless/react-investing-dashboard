@@ -71,8 +71,8 @@ export default function TitlebarGridList() {
 		};
 		getNews();
 	}, []);
-	console.log('data:');
-	console.log({ data });
+	// console.log('data:');
+	// console.log({ data });
 
 	const classes = useStyles();
 

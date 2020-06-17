@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
 	root: {
@@ -16,36 +17,36 @@ const useStyles = makeStyles({
 	}
 });
 
-export default function Stocks() {
+export default function Stocks(props) {
 	const classes = useStyles();
-	const [ data, setData ] = useState({ metaData: [] });
+	// const [ data, setData ] = useState({ metaData: [] });
 
-	useEffect(() => {
-		const getStockData = async () => {
-			const result = {
-				'Meta Data': {
-					'1. Information':
-						'Weekly Prices (open, high, low, close) and Volumes',
-					'2. Symbol': 'IBM',
-					'3. Last Refreshed': '2020-05-29',
-					'4. Time Zone': 'US/Eastern'
-				}
-			};
-			// LIVE API:
-			// const result = await axios(
-			// 	'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
-			// );
-			setData(result['Meta Data']);
-			//  LIVE API:
-			// setData(result.data['Meta Data']);
-		};
-		getStockData();
-	}, []);
-	console.log(data);
+	// useEffect(() => {
+	// 	const getStockData = async () => {
+	// 		const result = {
+	// 			'Meta Data': {
+	// 				'1. Information':
+	// 					'Weekly Prices (open, high, low, close) and Volumes',
+	// 				'2. Symbol': 'IBM',
+	// 				'3. Last Refreshed': '2020-05-29',
+	// 				'4. Time Zone': 'US/Eastern'
+	// 			}
+	// 		};
+	// 		// LIVE API:
+	// 		// const result = await axios(
+	// 		// 	'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
+	// 		// );
+	// 		setData(result['Meta Data']);
+	// 		//  LIVE API:
+	// 		// setData(result.data['Meta Data']);
+	// 	};
+	// 	getStockData();
+	// }, []);
+	// console.log(data);
 
-	// const symbol = data.["Meta Data"];
-	// console.log(symbol);
-	const image = require('./../assets/stock-placeholder.jpg');
+	// // const symbol = data.["Meta Data"];
+	// // console.log(symbol);
+	// const image = require('./../assets/stock-placeholder.jpg');
 
 	const cardStyles = {
 		justifyContent: 'center'
@@ -58,21 +59,15 @@ export default function Stocks() {
 				component="img"
 				alt="Stock placeholder image"
 				height="120"
-				image={image}
+				image={props.img}
 				title="Stock Ticker Card"
 			/>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="h2">
-					IBM{' '}
+					IBM {props.name}
 				</Typography>
 				{/* <Typography variant="body2" color="textSecondary" component="p"> */}
-				<div>
-					{Object.values(data).map((item) => {
-						return <li>{item}</li>;
-					})}
-
-					{/* {data.metaData.map((item) => <li>{item}</li>)} */}
-				</div>
+				<div>{/* {data.metaData.map((item) => <li>{item}</li>)} */}</div>
 				{/* </Typography> */}
 			</CardContent>
 			{/* </CardActionArea> */}
@@ -87,3 +82,8 @@ export default function Stocks() {
 		</Card>
 	);
 }
+
+Stocks.propTypes = {
+	stock: PropTypes.string
+	// img: PropTypes.string
+};

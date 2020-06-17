@@ -9,7 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
-
+import { VictoryTheme, VictoryLine, VictoryChart } from 'victory';
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 300,
@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 
 export default function Stocks(props) {
 	const classes = useStyles();
+
 	// const [ data, setData ] = useState({ metaData: [] });
 
 	// useEffect(() => {
@@ -48,19 +49,29 @@ export default function Stocks(props) {
 	// // console.log(symbol);
 	// const image = require('./../assets/stock-placeholder.jpg');
 
+	const data = [
+		{ x: 1, y: 2 },
+		{ x: 2, y: 3 },
+		{ x: 3, y: 5 },
+		{ x: 4, y: 4 },
+		{ x: 5, y: 7 }
+	];
+
 	const cardStyles = {
 		justifyContent: 'center'
 	};
 
 	return (
 		<Card className={classes.root}>
-			<CardMedia
+			{/* <CardMedia
 				component="img"
 				alt="Stock placeholder image"
 				height="125"
 				image={props.img}
 				title="Stock Ticker Card"
-			/>
+			/> */}
+			{/* <VictoryChart> */}
+
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="h2">
 					{props.name}
@@ -81,6 +92,22 @@ export default function Stocks(props) {
 					<DeleteIcon />
 				</IconButton>
 			</CardActions>
+			<div>
+				<VictoryLine
+					style={{
+						data: {
+							stroke: '#404db5',
+							strokeWidth: ({ data }) => data.length
+						},
+						labels: {
+							fontSize: 15,
+							fill: ({ datum }) => (datum.x === 3 ? '#c43a31' : '#fffeff')
+						}
+					}}
+					data={data}
+					labels={({ datum }) => datum.x}
+				/>
+			</div>
 		</Card>
 	);
 }

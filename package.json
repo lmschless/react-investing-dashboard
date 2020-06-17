@@ -12,10 +12,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "recharts": "^1.8.5",
     "styled-components": "^5.1.1",
     "typeface-roboto": "0.0.75",
-    "uuid": "^8.1.0"
+    "uuid": "^8.1.0",
+    "victory": "^34.3.11"
   },
   "scripts": {
     "start": "react-scripts start",

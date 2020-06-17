@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,7 +12,8 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 300
+		maxWidth: 300,
+		maxHeight: '380px'
 	}
 });
 
@@ -54,11 +54,10 @@ export default function Stocks(props) {
 
 	return (
 		<Card className={classes.root}>
-			{/* <CardActionArea> */}
 			<CardMedia
 				component="img"
 				alt="Stock placeholder image"
-				height="120"
+				height="125"
 				image={props.img}
 				title="Stock Ticker Card"
 			/>
@@ -74,7 +73,6 @@ export default function Stocks(props) {
 					</div>
 				</Typography>
 			</CardContent>
-			{/* </CardActionArea> */}
 			<CardActions style={cardStyles}>
 				<IconButton aria-label="edit">
 					<EditIcon />

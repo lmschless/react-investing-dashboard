@@ -116,6 +116,21 @@ export class Main extends Component {
 								img={this.state.image}
 								open={stock['02. open']}
 							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
 
 							{/* {Object.values(data).map((stock) => {
 							return <Stock name={stock.symbol} image={stock.urlToImage} />;
@@ -127,7 +142,7 @@ export class Main extends Component {
 						</div>
 						{/* </Typography> */}
 					</main>
-					{/* <NewsCard /> */}
+					<NewsCard />
 				</div>
 				<Footer />
 			</React.Fragment>

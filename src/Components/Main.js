@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main() {
 	const [ data, setData ] = useState({ metaData: [] });
+	const [ symbols, setSymbol ] = useState({
+		default: [ 'IBM', 'MSFT', 'AAPL' ]
+	});
 
 	useEffect(() => {
 		const getStockData = async () => {
@@ -60,6 +63,7 @@ export default function Main() {
 	}, []);
 	console.log('Main data:');
 	console.log({ data });
+	console.log({ symbols });
 	// const symbol = data.["Meta Data"];
 	// console.log(symbol);
 	const image = require('./../assets/stock-placeholder.jpg');

@@ -40,19 +40,62 @@ export class Main extends Component {
 		};
 	}
 
-	componentDidMount = async () => {
-		const results = await axios(
-			'https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM'
-		);
-		// console.log(result);
-		const data = results.data['Global Quote'];
+	// componentDidMount = async () => {
+	// 	const results = await axios(
+	// 		'https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM'
+	// 	);
+	// 	// console.log(result);
+	// 	const data = results.data['Global Quote'];
 
-		let result = {
-			name: data['2. Symbol']
-		};
-		this.setState({ stocks: data });
+	// 	let result = {
+	// 		name: data['2. Symbol']
+	// 	};
+	// 	this.setState({ stocks: data });
+	// 	console.log(this.state.stocks);
+	// };
+
+	componentDidMount = async () => {
+		const results = await axios
+			.all([
+				axios.get(
+					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM`
+				),
+				axios.get(
+					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=AAPL`
+				),
+				axios.get(
+					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=MSFT`
+				)
+			])
+			.then(
+				axios.spread((firstResponse, secondResponse, thirdResponse) => {
+					console.log(
+						firstResponse.data,
+						secondResponse.data,
+						thirdResponse.data
+					);
+
+					let newStockList = this.state.stocks;
+					newStockList.unshift(
+						firstResponse.data['Global Quote'],
+						secondResponse.data['Global Quote'],
+						thirdResponse.data['Global Quote']
+					);
+					this.setState({ stocks: newStockList });
+				})
+			)
+			.catch((error) => console.log(error));
 		console.log(this.state.stocks);
+		// console.log(this.state.stocks[0]);
+		// const data = results.data['Global Quote'];
+
+		// let result = {
+		// 	name: data['2. Symbol']
+		// };
+		// this.setState({ stocks: data });
+		// console.log(this.state.stocks);
 	};
+
 	// const [ data, setData ] = useState({ metaData: [] });
 	// const [ symbols, setSymbol ] = useState({
 	// 	default: [ 'IBM', 'MSFT', 'AAPL' ]
@@ -100,49 +143,49 @@ export class Main extends Component {
 			// padding: '2em'
 			// margin: '5em'
 		};
-		const stock = this.state.stocks;
-		console.log(stock);
+		// const stockList = this.state.stocks;
+		// console.log(stock);
 		return (
 			<React.Fragment>
 				<div className={classes.root}>
 					<main className={classes.content}>
-						{/* <div className={classes.toolbar} /> */}
 						{/* <Typography paragraph> */}
 
-						{/* <StockList /> */}
 						<div style={gridContainer}>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
+							{this.state.stocks.map((stock) => (
+								<Stock
+									name={stock['01. symbol']}
+									// img={this.state.image}
+									// key={stock['01. symbol']}
+									// open={stock['02. open']}
+								/>
+							))}
 
-							{/* {Object.values(data).map((stock) => {
-							return <Stock name={stock.symbol} image={stock.urlToImage} />;
-						})} */}
-
-							{/* {Array.from(data).map((stock) => ( */}
-							{/* // 	<Stock key={stock.symbol} name={stock.symbol} img={image} />
-						// ))} */}
+							{/* <Stock data={this.state.stocks} /> */}
+							{/* <Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/>
+							<Stock
+								name={stock['01. symbol']}
+								img={this.state.image}
+								open={stock['02. open']}
+							/> */}
 						</div>
 						{/* </Typography> */}
 					</main>
-					<NewsCard />
+					{/* <NewsCard /> */}
 				</div>
 				<Footer />
 			</React.Fragment>

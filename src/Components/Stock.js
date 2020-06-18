@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
 import { VictoryTheme, VictoryLine, VictoryChart } from 'victory';
+
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 300,
@@ -77,11 +78,12 @@ export default function Stocks(props) {
 					{props.name}
 				</Typography>
 				<Typography variant="body2" color="textSecondary" component="p">
-					<div>
-						Open: {props.open}
-						<li>{props.close}</li>
-						<li>{props.change}</li>
-					</div>
+					{/* <div> */}
+					{props.data}
+					{/* Open: {props.open} */}
+					{/* <li>{props.close}</li> */}
+					{/* <li>{props.change}</li> */}
+					{/* </div> */}
 				</Typography>
 			</CardContent>
 			<CardActions style={cardStyles}>

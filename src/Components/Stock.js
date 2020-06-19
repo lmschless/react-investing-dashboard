@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
 import { VictoryTheme, VictoryLine, VictoryChart } from 'victory';
+import { formatTimeFromNow } from './utils/time';
 
 const useStyles = makeStyles({
 	root: {
@@ -19,6 +20,9 @@ const useStyles = makeStyles({
 });
 
 export default function Stocks(props) {
+	const price = parseInt(props.price).toFixed(2);
+	const open = parseInt(props.open).toFixed(2);
+	const previousPrice = props.pclose;
 	const classes = useStyles();
 
 	// const [ data, setData ] = useState({ metaData: [] });
@@ -50,13 +54,7 @@ export default function Stocks(props) {
 	// // console.log(symbol);
 	// const image = require('./../assets/stock-placeholder.jpg');
 
-	const data = [
-		{ x: 1, y: 2 },
-		{ x: 2, y: 3 },
-		{ x: 3, y: 5 },
-		{ x: 4, y: 4 },
-		{ x: 5, y: 7 }
-	];
+	const data = [ { x: 1, y: 2 }, { x: 2, y: 3 } ];
 
 	const cardStyles = {
 		justifyContent: 'center'
@@ -77,10 +75,39 @@ export default function Stocks(props) {
 				<Typography gutterBottom variant="h5" component="h2">
 					{props.name}
 				</Typography>
+				<div style={{ height: '100px' }}>
+					<VictoryLine
+						style={{
+							data: {
+								stroke: '#404db5',
+								strokeWidth: ({ data }) => data.length
+							},
+							labels: {
+								fontSize: 15,
+								fill: ({ datum }) => (datum.x === 3 ? '#c43a31' : '#fffeff')
+							}
+						}}
+						data={[
+							{ x: 1, y: 2 },
+							{ x: 2, y: 3 },
+							{ x: 3, y: 5 },
+							{ x: 4, y: 4 },
+							{ x: 5, y: 6 }
+						]}
+						labels={({ datum }) => datum.x}
+					/>
+				</div>
 				<Typography variant="body2" color="textSecondary" component="p">
 					{/* <div> */}
-					{props.data}
-					{/* Open: {props.open} */}
+					Current Price: {price}
+					<br />
+					Open: {props.open}
+					<br />
+					Previous Close: {props.pclose}
+					<br />
+					Change: {props.change}
+					<br />
+					Last updated {formatTimeFromNow()}
 					{/* <li>{props.close}</li> */}
 					{/* <li>{props.change}</li> */}
 					{/* </div> */}
@@ -94,22 +121,6 @@ export default function Stocks(props) {
 					<DeleteIcon />
 				</IconButton>
 			</CardActions>
-			<div>
-				<VictoryLine
-					style={{
-						data: {
-							stroke: '#404db5',
-							strokeWidth: ({ data }) => data.length
-						},
-						labels: {
-							fontSize: 15,
-							fill: ({ datum }) => (datum.x === 3 ? '#c43a31' : '#fffeff')
-						}
-					}}
-					data={data}
-					labels={({ datum }) => datum.x}
-				/>
-			</div>
 		</Card>
 	);
 }

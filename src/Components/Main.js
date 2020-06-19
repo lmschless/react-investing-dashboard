@@ -81,6 +81,7 @@ export class Main extends Component {
 						secondResponse.data['Global Quote'],
 						thirdResponse.data['Global Quote']
 					);
+					// correctly updates state to hold the 3 API responses
 					this.setState({ stocks: newStockList });
 				})
 			)
@@ -100,36 +101,6 @@ export class Main extends Component {
 	// const [ symbols, setSymbol ] = useState({
 	// 	default: [ 'IBM', 'MSFT', 'AAPL' ]
 	// });
-
-	// useEffect(() => {
-	// 	const getStockData = async () => {
-	// hard coded
-	// const result = {
-	// 	'Meta Data': {
-	// 		'1. Information':
-	// 			'Weekly Prices (open, high, low, close) and Volumes',
-	// 		'2. Symbol': 'IBM',
-	// 		'3. Last Refreshed': '2020-05-29',
-	// 		'4. Time Zone': 'US/Eastern'
-	// 	}
-	// };
-	//////////////////////
-	// LIVE API:
-	// const result = await axios(
-	// 	'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=12UGV4HUPE1MOT6Y'
-	// );
-	///// hard coded:
-	// setData(result['Meta Data']);
-	//  LIVE API:
-	// 		setData(result.data['Meta Data']);
-	// 	};
-	// 	getStockData();
-	// }, []);
-	// console.log('Main data:');
-	// console.log({ data });
-	// console.log({ symbols });
-	// const symbol = data.["Meta Data"];
-	// console.log(symbol);
 
 	render() {
 		const { classes } = this.props;
@@ -156,8 +127,10 @@ export class Main extends Component {
 								<Stock
 									name={stock['01. symbol']}
 									// img={this.state.image}
-									// key={stock['01. symbol']}
-									// open={stock['02. open']}
+									key={stock['01. symbol']}
+									price={stock['05. price']}
+									open={stock['02. open']}
+									change={stock['10. change percent']}
 								/>
 							))}
 

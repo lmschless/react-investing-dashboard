@@ -74,6 +74,42 @@ export class Main extends Component {
 					'08. previous close': '196.3200',
 					'09. change': '-1.1700',
 					'10. change percent': '-0.5960%'
+				},
+				{
+					'01. symbol': 'SNAP',
+					'02. open': '22.4100',
+					'03. high': '22.6950',
+					'04. low': '21.9500',
+					'05. price': '22.6600',
+					'06. volume': '33289970',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '21.9900',
+					'09. change': '0.6700',
+					'10. change percent': '3.0468%'
+				},
+				{
+					'01. symbol': 'FB',
+					'02. open': '237.7900',
+					'03. high': '240.8300',
+					'04. low': '235.5500',
+					'05. price': '238.7900',
+					'06. volume': '30081291',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '235.9400',
+					'09. change': '2.8500',
+					'10. change percent': '1.2079%'
+				},
+				{
+					'01. symbol': 'TSLA',
+					'02. open': '1012.7800',
+					'03. high': '1015.9700',
+					'04. low': '991.3400',
+					'05. price': '1000.9000',
+					'06. volume': '8679749',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '1003.9600',
+					'09. change': '-3.0600',
+					'10. change percent': '-0.3048%'
 				}
 			]
 		};
@@ -81,52 +117,51 @@ export class Main extends Component {
 			stock.id = v4();
 		});
 	}
-	componentDidMount = async () => {
-		await axios
-			.all([
-				axios.get(
-					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM`
-				),
-				axios.get(
-					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=AAPL`
-				),
-				axios.get(
-					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=MSFT`
-				)
-			])
-			.then(
-				axios.spread((firstResponse, secondResponse, thirdResponse) => {
-					console.log(
-						firstResponse.data,
-						secondResponse.data,
-						thirdResponse.data
-					);
+	// componentDidMount = async () => {
+	// 	await axios
+	// 		.all([
+	// 			axios.get(
+	// 				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM`
+	// 			),
+	// 			axios.get(
+	// 				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=AAPL`
+	// 			),
+	// 			axios.get(
+	// 				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=MSFT`
+	// 			)
+	// 		])
+	// 		.then(
+	// 			axios.spread((firstResponse, secondResponse, thirdResponse) => {
+	// 				console.log(
+	// 					firstResponse.data,
+	// 					secondResponse.data,
+	// 					thirdResponse.data
+	// 				);
 
-					let newStockList = this.state.stocks;
-					newStockList.unshift(
-						firstResponse.data['Global Quote'],
-						secondResponse.data['Global Quote'],
-						thirdResponse.data['Global Quote']
-					);
-					// correctly updates state to hold the 3 API responses
-					this.setState({ stocks: newStockList });
-				})
-			)
-			.catch((error) => console.log(error));
-		console.log(this.state.stocks);
-	};
+	// 				let newStockList = this.state.stocks;
+	// 				newStockList.unshift(
+	// 					firstResponse.data['Global Quote'],
+	// 					secondResponse.data['Global Quote'],
+	// 					thirdResponse.data['Global Quote']
+	// 				);
+	// 				// correctly updates state to hold the 3 API responses
+	// 				this.setState({ stocks: newStockList });
+	// 			})
+	// 		)
+	// 		.catch((error) => console.log(error));
+	// 	console.log(this.state.stocks);
+	// };
 
-	handleAddStock = (pieName, description, quantity) => {
+	handleAddStock = (result) => {
 		let newStockList = this.state.fallbackStocks;
-		const id = v4();
-		let newStock = {
-			name: pieName,
-			longDescription: description,
-			count: quantity,
-			id: id,
-			displayDetails: false
-		};
-		newStockList.unshift(newStock);
+		// const id = v4();
+		// let newStock = {
+		// 	name: pieName,
+		// 	longDescription: description,
+		// 	count: quantity,
+		// 	id: id,
+		// };
+		newStockList.unshift(result);
 		this.setState({ fallbackStocks: newStockList });
 	};
 
@@ -135,6 +170,19 @@ export class Main extends Component {
 			(stock) => stock.id !== id
 		);
 		this.setState({ fallbackStocks: filteredStocks });
+	};
+
+	handleSearchStock = async (input) => {
+		await axios
+			.get(
+				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=${input}`
+			)
+			.then((response) => {
+				let result = response.data['Global Quote'];
+				console.log(result);
+				this.handleAddStock(result);
+			})
+			.catch((error) => console.log(error));
 	};
 
 	render() {
@@ -176,7 +224,10 @@ export class Main extends Component {
 					</main>
 					<NewsCard />
 				</div>
-				<Footer addStock={this.handleAddStock} />
+				<Footer
+					addStock={this.handleAddStock}
+					searchStock={this.handleSearchStock}
+				/>
 			</React.Fragment>
 		);
 	}

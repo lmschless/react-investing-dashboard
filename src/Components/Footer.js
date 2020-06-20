@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function Footer() {
+export default function Footer(props) {
 	const classes = useStyles();
 
 	return (

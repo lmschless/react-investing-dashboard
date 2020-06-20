@@ -8,6 +8,7 @@ import Stock from './Stock';
 import Footer from './Footer';
 import NewsCard from './NewsCard';
 import axios from 'axios';
+import { v4 } from 'uuid';
 
 const styles = (theme) => ({
 	root: {
@@ -77,21 +78,6 @@ export class Main extends Component {
 			]
 		};
 	}
-
-	// componentDidMount = async () => {
-	// 	const results = await axios(
-	// 		'https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM'
-	// 	);
-	// 	// console.log(result);
-	// 	const data = results.data['Global Quote'];
-
-	// 	let result = {
-	// 		name: data['2. Symbol']
-	// 	};
-	// 	this.setState({ stocks: data });
-	// 	console.log(this.state.stocks);
-	// };
-
 	componentDidMount = async () => {
 		const results = await axios
 			.all([
@@ -135,10 +121,26 @@ export class Main extends Component {
 		// console.log(this.state.stocks);
 	};
 
-	// const [ data, setData ] = useState({ metaData: [] });
-	// const [ symbols, setSymbol ] = useState({
-	// 	default: [ 'IBM', 'MSFT', 'AAPL' ]
-	// });
+	handleAddStock = (pieName, description, quantity) => {
+		let newStockList = this.state.fallbackStocks;
+		const id = v4();
+		let newStock = {
+			name: pieName,
+			longDescription: description,
+			count: quantity,
+			id: id,
+			displayDetails: false
+		};
+		newStockList.unshift(newStock);
+		this.setState({ fallbackStocks: newStockList });
+	};
+
+	handleDeleteStock = (id) => {
+		let filteredStocks = this.state.fallbackStocks.filter(
+			(stock) => stock.id !== id
+		);
+		this.setState({ fallbackStocks: filteredStocks });
+	};
 
 	render() {
 		const { classes } = this.props;
@@ -199,7 +201,7 @@ export class Main extends Component {
 					</main>
 					{/* <NewsCard /> */}
 				</div>
-				<Footer />
+				<Footer addStock={this.handleAddStock} />
 			</React.Fragment>
 		);
 	}

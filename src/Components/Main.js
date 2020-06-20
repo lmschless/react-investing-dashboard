@@ -77,9 +77,12 @@ export class Main extends Component {
 				}
 			]
 		};
+		this.state.fallbackStocks.forEach((stock) => {
+			stock.id = v4();
+		});
 	}
 	componentDidMount = async () => {
-		const results = await axios
+		await axios
 			.all([
 				axios.get(
 					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=IBM`
@@ -172,6 +175,8 @@ export class Main extends Component {
 									price={stock['05. price']}
 									open={stock['02. open']}
 									change={stock['10. change percent']}
+									id={stock.id}
+									delete={this.handleDeleteStock}
 								/>
 							))}
 

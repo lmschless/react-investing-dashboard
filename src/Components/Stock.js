@@ -57,7 +57,7 @@ export default function Stocks(props) {
 	const cardStyles = {
 		justifyContent: 'center'
 	};
-
+	const image = require('./../assets/stock-placeholder.jpg');
 	return (
 		<Card className={classes.root}>
 			{/* <CardMedia
@@ -68,12 +68,20 @@ export default function Stocks(props) {
 				title="Stock Ticker Card"
 			/> */}
 			{/* <VictoryChart> */}
-
+			<CardMedia
+				className={classes.media}
+				component="img"
+				alt="Stock placeholder image"
+				height="125"
+				image={image}
+				title="Default Stock Image"
+			/>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="h2">
 					{props.name}
 				</Typography>
-				<div style={{ height: '100px' }}>
+
+				{/* <div style={{ height: '100px' }}>
 					<VictoryLine
 						style={{
 							data: {
@@ -94,7 +102,7 @@ export default function Stocks(props) {
 						]}
 						labels={({ datum }) => datum.x}
 					/>
-				</div>
+				</div> */}
 				<Typography variant="body2" color="textSecondary" component="p">
 					{/* <div> */}
 					Current Price: {price}

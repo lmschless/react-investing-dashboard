@@ -54,8 +54,6 @@ export default function Stocks(props) {
 	// // console.log(symbol);
 	// const image = require('./../assets/stock-placeholder.jpg');
 
-	const data = [ { x: 1, y: 2 }, { x: 2, y: 3 } ];
-
 	const cardStyles = {
 		justifyContent: 'center'
 	};

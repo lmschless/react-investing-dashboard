@@ -36,7 +36,45 @@ export class Main extends Component {
 
 		this.state = {
 			stocks: [],
-			image: require('./../assets/stock-placeholder.jpg')
+			image: require('./../assets/stock-placeholder.jpg'),
+			fallbackStocks: [
+				{
+					'01. symbol': 'IBM',
+					'02. open': '126.1700',
+					'03. high': '126.8200',
+					'04. low': '122.2500',
+					'05. price': '122.4700',
+					'06. volume': '7531117',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '124.1600',
+					'09. change': '-1.6900',
+					'10. change percent': '-1.3611%'
+				},
+				{
+					'01. symbol': 'AAPL',
+					'02. open': '354.6350',
+					'03. high': '356.5600',
+					'04. low': '345.1500',
+					'05. price': '349.7200',
+					'06. volume': '64107713',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '351.7300',
+					'09. change': '-2.0100',
+					'10. change percent': '-0.5715%'
+				},
+				{
+					'01. symbol': 'MSFT',
+					'02. open': '198.5900',
+					'03. high': '199.2900',
+					'04. low': '194.3700',
+					'05. price': '195.1500',
+					'06. volume': '43674250',
+					'07. latest trading day': '2020-06-19',
+					'08. previous close': '196.3200',
+					'09. change': '-1.1700',
+					'10. change percent': '-0.5960%'
+				}
+			]
 		};
 	}
 
@@ -123,7 +161,8 @@ export class Main extends Component {
 						{/* <Typography paragraph> */}
 
 						<div style={gridContainer}>
-							{this.state.stocks.map((stock) => (
+							{/* using fallback stocks object instead of api for now */}
+							{this.state.fallbackStocks.map((stock) => (
 								<Stock
 									name={stock['01. symbol']}
 									// img={this.state.image}

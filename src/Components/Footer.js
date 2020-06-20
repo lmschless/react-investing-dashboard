@@ -9,6 +9,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -98,15 +100,6 @@ export default function Footer(props) {
 					<Typography className={classes.title} variant="h6" noWrap>
 						Investing Portfolio
 					</Typography>
-					{display ? (
-						<Fab
-							color="secondary"
-							aria-label="add"
-							className={classes.fabButton}
-						>
-							<AddIcon />
-						</Fab>
-					) : null}
 					<div className={classes.grow} />
 					<IconButton color="inherit">
 						<div className={classes.search}>
@@ -126,6 +119,16 @@ export default function Footer(props) {
 							/>
 						</div>{' '}
 					</IconButton>
+					{display ? (
+						<Button
+							variant="contained"
+							color="secondary"
+							className={classes.button}
+							endIcon={<Icon>add</Icon>}
+						>
+							Add Stock
+						</Button>
+					) : null}
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

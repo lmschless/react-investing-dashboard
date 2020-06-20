@@ -3,11 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-
-// import tileData from './tileData';
-import styled from 'styled-components';
+import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -15,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
-		justifyContent: 'space-around',
+		justifyContent: 'center',
 		overflow: 'hidden'
 		// backgroundColor: theme.palette.background.paper
 	},
@@ -26,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '80vh'
 	},
 	text: {
-		fontSize: '1'
+		textAlign: 'center'
 	}
 }));
 
@@ -52,18 +49,12 @@ export default function TitlebarGridList() {
 					)
 				)
 				.map(
-					({
-						title,
-						author,
-						publishedAt: date,
-						urlToImage: image,
-						url: link
-					}) => ({
+					({ title, author, publishedAt: date, urlToImage: image, url }) => ({
 						title,
 						author,
 						date,
 						image,
-						link
+						url
 					})
 				);
 			// setData(result.data.articles);
@@ -75,14 +66,35 @@ export default function TitlebarGridList() {
 	// console.log({ data });
 
 	const classes = useStyles();
-
 	return (
 		<div className={classes.root}>
 			<GridList cellHeight={280} className={classes.gridList}>
-				{/* <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
+				<Grid container direction="row" justify="center" alignItems="center">
+					{Array.from(data).map((tile) => (
+						<a target="_blank" href={tile.url}>
+							<GridListTile key={tile.link}>
+								<img
+									height="450"
+									width="350"
+									link={tile.link}
+									src={tile.image}
+									alt={tile.title}
+								/>
+								<GridListTileBar
+									className={classes.text}
+									title={tile.title}
+									subtitle={<span>{tile.date}</span>}
+								/>
+							</GridListTile>
+						</a>
+					))}
+				</Grid>
+			</GridList>
+
+			{/* <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
 					<ListSubheader component="div">Investing News</ListSubheader>
 				</GridListTile> */}
-				{Array.from(data).map((tile) => (
+			{/* {Array.from(data).map((tile) => (
 					<GridListTile key={tile.link}>
 						<img src={tile.image} alt={tile.title} />
 						<GridListTileBar
@@ -92,7 +104,7 @@ export default function TitlebarGridList() {
 						/>
 					</GridListTile>
 				))}
-			</GridList>
+			</GridList> */}
 		</div>
 	);
 }

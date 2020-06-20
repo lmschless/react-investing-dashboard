@@ -11,6 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -96,14 +97,18 @@ export default function Footer(props) {
 	// const submitValue = () => {
 
 	// }
-
+	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
 	return (
 		<React.Fragment>
 			<CssBaseline />
 			<AppBar position="fixed" color="primary" className={classes.appBar}>
 				<Toolbar>
-					<Typography className={classes.title} variant="h6" noWrap>
-						Investing Portfolio
+					<Typography className={classes.title} variant="h4" noWrap>
+						Luke's Stock Portfolio
+					</Typography>
+					<Typography style={{ marginLeft: '2em' }} variant="subtitle2">
+						{' '}
+						{currentTime}{' '}
 					</Typography>
 					<div className={classes.grow} />
 					<IconButton color="inherit">

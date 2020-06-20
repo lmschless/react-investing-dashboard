@@ -160,13 +160,6 @@ export class Main extends Component {
 
 	handleAddStock = (result) => {
 		let newStockList = this.state.fallbackStocks;
-		// const id = v4();
-		// let newStock = {
-		// 	name: pieName,
-		// 	longDescription: description,
-		// 	count: quantity,
-		// 	id: id,
-		// };
 		newStockList.unshift(result);
 		this.setState({ fallbackStocks: newStockList });
 	};

@@ -91,13 +91,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Footer(props) {
 	const [ display, setDisplay ] = useState(false);
 	const [ userInput, setInput ] = useState('');
-
 	const classes = useStyles();
-
-	// const submitValue = () => {
-
-	// }
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
+
 	return (
 		<React.Fragment>
 			<CssBaseline />
@@ -149,3 +145,7 @@ export default function Footer(props) {
 		</React.Fragment>
 	);
 }
+
+Footer.propTypes = {
+	searchStock: PropTypes.func
+};

@@ -137,6 +137,10 @@ export default function Stocks(props) {
 }
 
 Stocks.propTypes = {
-	stock: PropTypes.string
-	// img: PropTypes.string
+	stock: PropTypes.string,
+	delete: PropTypes.func,
+	name: PropTypes.string,
+	price: PropTypes.string,
+	open: PropTypes.string,
+	change: PropTypes.string
 };

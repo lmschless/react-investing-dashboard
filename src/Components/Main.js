@@ -152,6 +152,12 @@ export class Main extends Component {
 	// 	console.log(this.state.stocks);
 	// };
 
+	handleCheck = (val) => {
+		return this.state.fallbackStocks.some(
+			(item) => val['01. symbol'] === item['01. symbol']
+		);
+	};
+
 	handleAddStock = (result) => {
 		let newStockList = this.state.fallbackStocks;
 		// const id = v4();
@@ -180,7 +186,9 @@ export class Main extends Component {
 			.then((response) => {
 				let result = response.data['Global Quote'];
 				console.log(result);
-				this.handleAddStock(result);
+				this.handleCheck(result) === false
+					? this.handleAddStock(result)
+					: console.log('item already exists');
 			})
 			.catch((error) => console.log(error));
 	};

@@ -20,9 +20,9 @@ const useStyles = makeStyles({
 });
 
 export default function Stocks(props) {
-	const price = parseInt(props.price).toFixed(2);
-	const open = parseInt(props.open).toFixed(2);
-	const previousPrice = props.pclose;
+	const price = parseFloat(props.price).toFixed(2);
+	const open = parseFloat(props.open).toFixed(2);
+	const change = parseFloat(props.change).toFixed(2);
 	const classes = useStyles();
 
 	// const [ data, setData ] = useState({ metaData: [] });
@@ -107,11 +107,11 @@ export default function Stocks(props) {
 					{/* <div> */}
 					Current Price: {price}
 					<br />
-					Open: {props.open}
+					Open: {open}
 					<br />
-					Previous Close: {props.pclose}
+					{/* Previous Close: {previousPrice} */}
 					<br />
-					Change: {props.change}
+					Change: {change}%
 					<br />
 					Last updated {formatTimeFromNow()}
 					{/* <li>{props.close}</li> */}

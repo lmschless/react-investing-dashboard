@@ -114,14 +114,6 @@ export class Main extends Component {
 			)
 			.catch((error) => console.log(error));
 		console.log(this.state.stocks);
-		// console.log(this.state.stocks[0]);
-		// const data = results.data['Global Quote'];
-
-		// let result = {
-		// 	name: data['2. Symbol']
-		// };
-		// this.setState({ stocks: data });
-		// console.log(this.state.stocks);
 	};
 
 	handleAddStock = (pieName, description, quantity) => {
@@ -149,8 +141,8 @@ export class Main extends Component {
 		const { classes } = this.props;
 		const gridContainer = {
 			display: 'grid',
-			gridTemplateColumns: 'repeat(auto-fill, minmax(18em, 5fr))',
-			gridTemplateRows: 'repeat(auto-fill, .5fr)',
+			gridTemplateColumns: 'repeat(3, 1fr)',
+			gridTemplateRows: 'repeat(2, 1fr)',
 			gridColumnGap: '.75em',
 			gridRowGap: '1em',
 			minHeight: '80vh'
@@ -179,32 +171,10 @@ export class Main extends Component {
 									delete={this.handleDeleteStock}
 								/>
 							))}
-
-							{/* <Stock data={this.state.stocks} /> */}
-							{/* <Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/>
-							<Stock
-								name={stock['01. symbol']}
-								img={this.state.image}
-								open={stock['02. open']}
-							/> */}
 						</div>
 						{/* </Typography> */}
 					</main>
-					{/* <NewsCard /> */}
+					<NewsCard />
 				</div>
 				<Footer addStock={this.handleAddStock} />
 			</React.Fragment>

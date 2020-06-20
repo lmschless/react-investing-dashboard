@@ -118,7 +118,6 @@ export default function Stocks(props) {
 				<IconButton
 					aria-label="delete"
 					onClick={() => {
-						console.log(props.id);
 						props.delete(props.id);
 					}}
 				>

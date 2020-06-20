@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		width: '18vw',
+		width: '20vw',
 		height: '80vh'
 	},
 	text: {

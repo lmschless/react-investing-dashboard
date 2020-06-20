@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import InputBase from '@material-ui/core/InputBase';
 import PropTypes from 'prop-types';
 
@@ -88,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Footer(props) {
+	const [ display, setDisplay ] = useState(false);
 	const classes = useStyles();
 
 	return (
@@ -98,9 +98,15 @@ export default function Footer(props) {
 					<Typography className={classes.title} variant="h6" noWrap>
 						Investing Portfolio
 					</Typography>
-					<Fab color="secondary" aria-label="add" className={classes.fabButton}>
-						<AddIcon />
-					</Fab>
+					{display ? (
+						<Fab
+							color="secondary"
+							aria-label="add"
+							className={classes.fabButton}
+						>
+							<AddIcon />
+						</Fab>
+					) : null}
 					<div className={classes.grow} />
 					<IconButton color="inherit">
 						<div className={classes.search}>
@@ -108,6 +114,9 @@ export default function Footer(props) {
 								<SearchIcon />
 							</div>
 							<InputBase
+								onClick={() => {
+									setDisplay(true);
+								}}
 								placeholder="Search…"
 								classes={{
 									root: classes.inputRoot,
@@ -116,9 +125,6 @@ export default function Footer(props) {
 								inputProps={{ 'aria-label': 'search' }}
 							/>
 						</div>{' '}
-					</IconButton>
-					<IconButton edge="end" color="inherit">
-						<MoreIcon />
 					</IconButton>
 				</Toolbar>
 			</AppBar>

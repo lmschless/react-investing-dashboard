@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 		overflow: 'hidden',
 		width: '23vw',
 		height: '100%',
+
 		// borderLeft: 'solid 6px #404db5',
 		borderRight: 'solid 15px #404db5'
 	},
@@ -25,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
 		gridTemplateColumns: '1fr',
 		width: '23vw',
 		height: '100vh',
+
 		overflowX: 'hidden'
+
 		// overflowY: 'hidden'
 	},
 	text: {
@@ -36,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	img: {
 		left: 0,
 		right: 0,
+
 		transform: 'translateX(0%)'
 	}
 }));
@@ -50,7 +54,7 @@ export default function TitlebarGridList() {
 	useEffect(() => {
 		const getNews = async () => {
 			const result = await axios(
-				'http://newsapi.org/v2/everything?q="stock market"&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
+				'http://newsapi.org/v2/top-headlines?country=us&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
 			);
 			console.log(result.data.articles);
 
@@ -79,7 +83,6 @@ export default function TitlebarGridList() {
 	// console.log({ data });
 
 	const classes = useStyles();
-	const formattedDate = moment().format('MMMM  Do, YYYY, h:mm a');
 
 	return (
 		<div className={classes.root}>
@@ -100,9 +103,8 @@ export default function TitlebarGridList() {
 									titlePosition="top"
 									key={tile.url}
 									className={classes.text}
-									// title={tile.title}
 									subtitle={
-										<span className={classes.text}>
+										<span>
 											{tile.title} <br />
 											{tile.date}
 										</span>

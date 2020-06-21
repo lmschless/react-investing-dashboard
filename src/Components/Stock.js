@@ -25,7 +25,14 @@ export default function Stocks(props) {
 	const price = parseFloat(props.price).toFixed(2);
 	const open = parseFloat(props.open).toFixed(2);
 	const close = parseFloat(props.close).toFixed(2);
-	const change = parseFloat(props.change).toFixed(2);
+	let change = parseFloat(props.change).toFixed(2);
+
+	if (change > 0) {
+		change = <span style={{ color: 'green' }}>({change}%)</span>;
+	} else {
+		change = <span style={{ color: 'red' }}>({change}%)</span>;
+	}
+
 	const classes = useStyles();
 
 	// const [ data, setData ] = useState({ metaData: [] });
@@ -107,7 +114,7 @@ export default function Stocks(props) {
 				</div> */}
 				{/* <div> */}
 				<Typography gutterBottom variant="h5" component="h2">
-					{price} ({change}%)
+					{price} {change}
 				</Typography>
 				<br />
 				Open: {open}

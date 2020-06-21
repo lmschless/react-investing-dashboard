@@ -9,6 +9,7 @@ import Footer from './Footer';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import { v4 } from 'uuid';
+import AlertText from './Alerts';
 
 const styles = (theme) => ({
 	root: {
@@ -209,6 +210,8 @@ export class Main extends Component {
 						searchStock={this.handleSearchStock}
 					/>
 					<main className={classes.content}>
+						<AlertText style={{ width: '5%' }} />
+
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}
 							{this.state.fallbackStocks.map((stock) => (

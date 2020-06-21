@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		overflow: 'hidden',
 		width: '23vw',
-		height: '100vh',
+		height: '100%',
 		// borderLeft: 'solid 6px #404db5',
 		borderRight: 'solid 15px #404db5'
 	},

@@ -217,6 +217,7 @@ export class Main extends Component {
 									key={stock['01. symbol']}
 									price={stock['05. price']}
 									open={stock['02. open']}
+									close={stock['08. previous close']}
 									change={stock['10. change percent']}
 									id={stock.id}
 									delete={this.handleDeleteStock}

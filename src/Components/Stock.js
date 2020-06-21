@@ -7,21 +7,24 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
 import PropTypes from 'prop-types';
 import { VictoryTheme, VictoryLine, VictoryChart } from 'victory';
 import { formatTimeFromNow } from './utils/time';
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 300,
-		maxHeight: '380px'
+		maxWidth: 325,
+		maxHeight: '375px',
+		minWidth: 280,
+		minHeight: '375px',
+		border: 'solid .5px white'
 	}
 });
 
 export default function Stocks(props) {
 	const price = parseFloat(props.price).toFixed(2);
 	const open = parseFloat(props.open).toFixed(2);
+	const close = parseFloat(props.close).toFixed(2);
 	const change = parseFloat(props.change).toFixed(2);
 	const classes = useStyles();
 
@@ -72,7 +75,7 @@ export default function Stocks(props) {
 				className={classes.media}
 				component="img"
 				alt="Stock placeholder image"
-				height="125"
+				height="130"
 				image={image}
 				title="Default Stock Image"
 			/>
@@ -80,7 +83,6 @@ export default function Stocks(props) {
 				<Typography gutterBottom variant="h5" component="h2">
 					{props.name}
 				</Typography>
-
 				{/* <div style={{ height: '100px' }}>
 					<VictoryLine
 						style={{
@@ -103,35 +105,27 @@ export default function Stocks(props) {
 						labels={({ datum }) => datum.x}
 					/>
 				</div> */}
-				<Typography variant="body2" color="textSecondary" component="p">
-					{/* <div> */}
-					Current Price: {price}
-					<br />
-					Open: {open}
-					<br />
-					{/* Previous Close: {previousPrice} */}
-					<br />
-					Change: {change}%
-					<br />
-					Last updated {formatTimeFromNow()}
-					{/* <li>{props.close}</li> */}
-					{/* <li>{props.change}</li> */}
-					{/* </div> */}
+				{/* <div> */}
+				<Typography gutterBottom variant="h5" component="h2">
+					{price} ({change}%)
 				</Typography>
+				<br />
+				Open: {open}
+				<br />
+				Previous Close: {close}
+				<hr />
+				Last updated {formatTimeFromNow()}
+				<CardActions style={cardStyles}>
+					<IconButton
+						aria-label="delete"
+						onClick={() => {
+							props.delete(props.id);
+						}}
+					>
+						<DeleteIcon />
+					</IconButton>
+				</CardActions>
 			</CardContent>
-			<CardActions style={cardStyles}>
-				<IconButton aria-label="edit">
-					<EditIcon />
-				</IconButton>
-				<IconButton
-					aria-label="delete"
-					onClick={() => {
-						props.delete(props.id);
-					}}
-				>
-					<DeleteIcon />
-				</IconButton>
-			</CardActions>
 		</Card>
 	);
 }

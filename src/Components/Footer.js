@@ -12,6 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import AlertText from './Alerts';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -104,6 +105,8 @@ export default function Footer(props) {
 						{' '}
 						{currentTime}{' '}
 					</Typography>
+					<AlertText />
+
 					<div className={classes.grow} />
 					<IconButton color="inherit">
 						<div className={classes.search}>

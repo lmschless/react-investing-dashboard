@@ -8,22 +8,29 @@ import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		// marginTop: '10vh',
+		paddingTop: '5vh',
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		overflow: 'hidden'
-		// backgroundColor: theme.palette.background.paper
 	},
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		width: '20vw',
-		height: '80vh'
+		width: '22vw',
+		height: '80vh',
+		overflowX: 'hidden'
 	},
 	text: {
-		textAlign: 'center'
+		display: 'flex',
+		justifyContent: 'center',
+		whiteSpace: 'wrap'
+	},
+	img: {
+		left: 0,
+		right: 0,
+		transform: 'translateX(0%)'
 	}
 }));
 
@@ -69,11 +76,17 @@ export default function TitlebarGridList() {
 	return (
 		<div className={classes.root}>
 			<GridList cellHeight={280} className={classes.gridList}>
-				<Grid container direction="row" justify="center" alignItems="center">
+				<Grid
+					container
+					direction="row"
+					// justify="center"
+					alignItems="center"
+				>
 					{Array.from(data).map((tile) => (
-						<a target="_blank" href={tile.url}>
-							<GridListTile key={tile.link}>
+						<a href={tile.url}>
+							<GridListTile key={tile.url}>
 								<img
+									className={classes.img}
 									height="450"
 									width="350"
 									link={tile.link}
@@ -81,9 +94,17 @@ export default function TitlebarGridList() {
 									alt={tile.title}
 								/>
 								<GridListTileBar
+									// style={{ whiteSpace: 'wrap' }}
+									titlePosition="top"
+									key={tile.url}
 									className={classes.text}
-									title={tile.title}
-									subtitle={<span>{tile.date}</span>}
+									// title={tile.title}
+									subtitle={
+										<span className={classes.text}>
+											{tile.title} <br />
+											{tile.date}
+										</span>
+									}
 								/>
 							</GridListTile>
 						</a>

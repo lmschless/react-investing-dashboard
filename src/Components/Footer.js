@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2, 2, 0)
 	},
 	paper: {
-		paddingBottom: 50
+		paddingTop: 50
 	},
 	list: {
 		marginBottom: theme.spacing(2)
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		top: 'auto',
-		bottom: 0
+		bottom: 'auto'
 	},
 	grow: {
 		flexGrow: 1
@@ -89,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Footer(props) {
-	const [ display, setDisplay ] = useState(false);
 	const [ userInput, setInput ] = useState('');
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
@@ -113,9 +112,6 @@ export default function Footer(props) {
 								<SearchIcon />
 							</div>
 							<InputBase
-								onClick={() => {
-									setDisplay(true);
-								}}
 								onChange={(e) => setInput(e.target.value)}
 								placeholder="Search…"
 								classes={{
@@ -126,20 +122,18 @@ export default function Footer(props) {
 							/>
 						</div>{' '}
 					</IconButton>
-					{display ? (
-						<Button
-							onClick={() => {
-								console.log(userInput);
-								props.searchStock(userInput);
-							}}
-							variant="contained"
-							color="secondary"
-							className={classes.button}
-							endIcon={<Icon>add</Icon>}
-						>
-							Add Stock
-						</Button>
-					) : null}
+					<Button
+						onClick={() => {
+							console.log(userInput);
+							props.searchStock(userInput);
+						}}
+						variant="contained"
+						color="secondary"
+						className={classes.button}
+						endIcon={<Icon>add</Icon>}
+					>
+						Add Stock
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

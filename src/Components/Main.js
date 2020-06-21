@@ -27,7 +27,8 @@ const styles = (theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3)
+		padding: theme.spacing(3),
+		paddingTop: 85
 	}
 });
 
@@ -193,7 +194,7 @@ export class Main extends Component {
 			gridTemplateColumns: 'repeat(3, 1fr)',
 			gridTemplateRows: 'repeat(2, 1fr)',
 			gridColumnGap: '.75em',
-			gridRowGap: '1em',
+			gridRowGap: '2.5em',
 			minHeight: '80vh'
 			// padding: '2em'
 			// margin: '5em'
@@ -203,15 +204,16 @@ export class Main extends Component {
 		return (
 			<React.Fragment>
 				<div className={classes.root}>
+					<Footer
+						addStock={this.handleAddStock}
+						searchStock={this.handleSearchStock}
+					/>
 					<main className={classes.content}>
-						{/* <Typography paragraph> */}
-
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}
 							{this.state.fallbackStocks.map((stock) => (
 								<Stock
 									name={stock['01. symbol']}
-									// img={this.state.image}
 									key={stock['01. symbol']}
 									price={stock['05. price']}
 									open={stock['02. open']}
@@ -221,14 +223,9 @@ export class Main extends Component {
 								/>
 							))}
 						</div>
-						{/* </Typography> */}
 					</main>
 					<NewsCard />
 				</div>
-				<Footer
-					addStock={this.handleAddStock}
-					searchStock={this.handleSearchStock}
-				/>
 			</React.Fragment>
 		);
 	}

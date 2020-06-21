@@ -28,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 		height: '100vh',
 
 		overflowX: 'hidden'
-
-		// overflowY: 'hidden'
 	},
 	text: {
 		display: 'flex',
@@ -43,10 +41,6 @@ const useStyles = makeStyles((theme) => ({
 		transform: 'translateX(0%)'
 	}
 }));
-
-// const textStyles = {
-// 	fontSize: '1px'
-// };
 
 export default function TitlebarGridList() {
 	const [ data, setData ] = useState({ test: [] });
@@ -115,21 +109,6 @@ export default function TitlebarGridList() {
 					))}
 				</Grid>
 			</GridList>
-
-			{/* <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
-					<ListSubheader component="div">Investing News</ListSubheader>
-				</GridListTile> */}
-			{/* {Array.from(data).map((tile) => (
-					<GridListTile key={tile.link}>
-						<img src={tile.image} alt={tile.title} />
-						<GridListTileBar
-							className={classes.text}
-							title={tile.title}
-							subtitle={<span>{tile.date}</span>}
-						/>
-					</GridListTile>
-				))}
-			</GridList> */}
 		</div>
 	);
 }

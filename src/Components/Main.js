@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import styled from 'styled-components';
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import Typography from '@material-ui/core/Typography';
 import Stock from './Stock';
 import Footer from './Footer';
 import NewsCard from './NewsCard';
@@ -23,8 +21,6 @@ const styles = (theme) => ({
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		padding: theme.spacing(0, 1)
-		// necessary for content to be below app bar
-		// ...theme.mixins.toolbar
 	},
 	content: {
 		flexGrow: 1,
@@ -38,6 +34,7 @@ export class Main extends Component {
 		super(props);
 
 		this.state = {
+			alert: false,
 			stocks: [],
 			image: require('./../assets/stock-placeholder.jpg'),
 			fallbackStocks: [
@@ -163,7 +160,7 @@ export class Main extends Component {
 	handleAddStock = (result) => {
 		let newStockList = this.state.fallbackStocks;
 		newStockList.unshift(result);
-		this.setState({ fallbackStocks: newStockList });
+		this.setState({ fallbackStocks: newStockList, alert: false });
 	};
 
 	handleDeleteStock = (id) => {
@@ -181,15 +178,17 @@ export class Main extends Component {
 			.then((response) => {
 				let result = response.data['Global Quote'];
 				console.log(result);
+				// checks for duplicate symbol. triggers alert if true
 				this.handleCheck(result) === false
 					? this.handleAddStock(result)
-					: console.log('item already exists');
+					: this.setState({ alert: true });
 			})
 			.catch((error) => console.log(error));
 	};
 
 	render() {
 		const { classes } = this.props;
+		const showAlert = this.state.alert ? null : classes.hide;
 		const gridContainer = {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
@@ -197,11 +196,8 @@ export class Main extends Component {
 			gridColumnGap: '.25em',
 			gridRowGap: '2.5em',
 			minHeight: '80vh'
-			// padding: '2em'
-			// margin: '5em'
 		};
-		// const stockList = this.state.stocks;
-		// console.log(stock);
+
 		return (
 			<React.Fragment>
 				<div className={classes.root}>
@@ -210,7 +206,9 @@ export class Main extends Component {
 						searchStock={this.handleSearchStock}
 					/>
 					<main className={classes.content}>
-						<AlertText style={{ width: '5%' }} />
+						<span className={showAlert}>
+							<AlertText />
+						</span>
 
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}

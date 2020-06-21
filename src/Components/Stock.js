@@ -13,10 +13,10 @@ import { formatTimeFromNow } from './utils/time';
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 325,
-		maxHeight: '375px',
-		minWidth: 280,
-		minHeight: '375px',
+		maxWidth: 330,
+		maxHeight: '385px',
+		minWidth: 295,
+		minHeight: '385px',
 		border: 'solid .5px white'
 	}
 });
@@ -82,7 +82,7 @@ export default function Stocks(props) {
 				className={classes.media}
 				component="img"
 				alt="Stock placeholder image"
-				height="130"
+				height="120"
 				image={image}
 				title="Default Stock Image"
 			/>
@@ -114,9 +114,10 @@ export default function Stocks(props) {
 				</div> */}
 				{/* <div> */}
 				<Typography gutterBottom variant="h5" component="h2">
-					{price} {change}
+					{price}
+					<br />
+					{change}
 				</Typography>
-				<br />
 				Open: {open}
 				<br />
 				Previous Close: {close}

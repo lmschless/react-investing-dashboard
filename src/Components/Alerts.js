@@ -4,7 +4,7 @@ import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		// width: '20%',
+		paddingBottom: '1em'
 	}
 }));
 

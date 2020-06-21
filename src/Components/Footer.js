@@ -102,9 +102,10 @@ export default function Footer(props) {
 					</Typography>
 					<Typography style={{ marginLeft: '2em' }} variant="subtitle2">
 						{' '}
-						{currentTime}{' '}
+						{currentTime}
 					</Typography>
 					<div className={classes.grow} />
+					NYSE : &nbsp; <span style={{ backgroundColor: 'red' }}>Closed</span>
 					<IconButton color="inherit">
 						<div className={classes.search}>
 							<div className={classes.searchIcon}>

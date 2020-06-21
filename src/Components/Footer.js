@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 			display: 'block'
 		}
 	},
-
 	text: {
 		padding: theme.spacing(2, 2, 0)
 	},
@@ -99,7 +98,7 @@ export default function Footer(props) {
 			<AppBar position="fixed" color="primary" className={classes.appBar}>
 				<Toolbar>
 					<Typography className={classes.title} variant="h4" noWrap>
-						Luke's Stock Portfolio
+						Stock Dashboard
 					</Typography>
 					<Typography style={{ marginLeft: '2em' }} variant="subtitle2">
 						{' '}

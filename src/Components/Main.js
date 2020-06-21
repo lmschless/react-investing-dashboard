@@ -193,7 +193,7 @@ export class Main extends Component {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
 			gridTemplateRows: 'repeat(2, 1fr)',
-			gridColumnGap: '.75em',
+			gridColumnGap: '.25em',
 			gridRowGap: '2.5em',
 			minHeight: '80vh'
 			// padding: '2em'

@@ -5,22 +5,28 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		paddingTop: '5vh',
+		paddingTop: '6.5vh',
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
-		overflow: 'hidden'
+		overflow: 'hidden',
+		width: '23vw',
+		height: '100vh',
+		// borderLeft: 'solid 6px #404db5',
+		borderRight: 'solid 15px #404db5'
 	},
 	gridList: {
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		width: '22vw',
-		height: '80vh',
+		width: '23vw',
+		height: '100vh',
 		overflowX: 'hidden'
+		// overflowY: 'hidden'
 	},
 	text: {
 		display: 'flex',
@@ -59,7 +65,7 @@ export default function TitlebarGridList() {
 					({ title, author, publishedAt: date, urlToImage: image, url }) => ({
 						title,
 						author,
-						date,
+						date: moment(date).format('MMMM  Do, YYYY, h:mm a'),
 						image,
 						url
 					})
@@ -73,15 +79,12 @@ export default function TitlebarGridList() {
 	// console.log({ data });
 
 	const classes = useStyles();
+	const formattedDate = moment().format('MMMM  Do, YYYY, h:mm a');
+
 	return (
 		<div className={classes.root}>
 			<GridList cellHeight={280} className={classes.gridList}>
-				<Grid
-					container
-					direction="row"
-					// justify="center"
-					alignItems="center"
-				>
+				<Grid container direction="row" alignItems="center">
 					{Array.from(data).map((tile) => (
 						<a href={tile.url}>
 							<GridListTile key={tile.url}>
@@ -94,7 +97,6 @@ export default function TitlebarGridList() {
 									alt={tile.title}
 								/>
 								<GridListTileBar
-									// style={{ whiteSpace: 'wrap' }}
 									titlePosition="top"
 									key={tile.url}
 									className={classes.text}

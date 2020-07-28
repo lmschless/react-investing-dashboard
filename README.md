@@ -5,6 +5,9 @@
 ###### By Luke Schlessinger
 
 
+
+## Live deployment: [https://lmschless.github.io/epicodus-capstone-stocks/]
+
 ##### Description
 * Single page dynamic React App which utilizes separate APIs to display stock market graphs and stock ticker information. 
 

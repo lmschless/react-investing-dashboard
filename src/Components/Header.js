@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function Footer(props) {
+export default function Header(props) {
 	const [ userInput, setInput ] = useState('');
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
@@ -140,6 +140,6 @@ export default function Footer(props) {
 	);
 }
 
-Footer.propTypes = {
+Header.propTypes = {
 	searchStock: PropTypes.func
 };

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles, useTheme } from '@material-ui/core/styles';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import Typography from '@material-ui/core/Typography';
 import Stock from './Stock';
-import Footer from './Footer';
+import Header from './Header';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import { v4 } from 'uuid';
@@ -201,7 +199,7 @@ export class Main extends Component {
 		return (
 			<React.Fragment>
 				<div className={classes.root}>
-					<Footer
+					<Header
 						addStock={this.handleAddStock}
 						searchStock={this.handleSearchStock}
 					/>

@@ -1,5 +1,5 @@
 {
-	"name": "stocks",
+	"name": "Investing Dashboard with React",
 	"homepage": "http://lmschless.github.io/epicodus-capstone-stocks",
 	"author": "Luke Schlessinger",
 	"version": "0.1.0",
@@ -33,11 +33,7 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
+		"production": [ ">0.2%", "not dead", "not op_mini all" ],
 		"development": [
 			"last 1 chrome version",
 			"last 1 firefox version",

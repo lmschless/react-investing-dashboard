@@ -83,29 +83,30 @@ export default function TitlebarGridList() {
 			<GridList key={v4()} cellHeight={280} className={classes.gridList}>
 				<Grid container direction="row" alignItems="center">
 					{Array.from(data).map((tile) => (
-						<a href={tile.url}>
-							<GridListTile key={v4()}>
-								<img
-									className={classes.img}
-									height="450"
-									width="350"
-									link={tile.link}
-									src={tile.image}
-									alt={tile.title}
-								/>
-								<GridListTileBar
-									titlePosition="top"
-									key={v4()}
-									className={classes.text}
-									subtitle={
-										<span>
-											{tile.title} <br />
-											{tile.date}
-										</span>
-									}
-								/>
-							</GridListTile>
-						</a>
+						<div key={v4()}>
+							<a href={tile.url}>
+								<GridListTile key={tile.url}>
+									<img
+										className={classes.img}
+										height="450"
+										width="350"
+										link={tile.link}
+										src={tile.image}
+										alt={tile.title}
+									/>
+									<GridListTileBar
+										titlePosition="top"
+										className={classes.text}
+										subtitle={
+											<span>
+												{tile.title} <br />
+												{tile.date}
+											</span>
+										}
+									/>
+								</GridListTile>
+							</a>
+						</div>
 					))}
 				</Grid>
 			</GridList>

@@ -98,7 +98,7 @@ export default function Footer(props) {
 			<AppBar position="fixed" color="primary" className={classes.appBar}>
 				<Toolbar>
 					<Typography className={classes.title} variant="h4" noWrap>
-						Stock Dashboard
+						Investing Dashboard
 					</Typography>
 					<Typography style={{ marginLeft: '2em' }} variant="subtitle2">
 						{' '}

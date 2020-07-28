@@ -70,13 +70,6 @@ export default function Stocks(props) {
 	const image = require('./../assets/stock-placeholder.jpg');
 	return (
 		<Card className={classes.root}>
-			{/* <CardMedia
-				component="img"
-				alt="Stock placeholder image"
-				height="125"
-				image={props.img}
-				title="Stock Ticker Card"
-			/> */}
 			{/* <VictoryChart> */}
 			<CardMedia
 				className={classes.media}

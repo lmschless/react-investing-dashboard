@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
 		overflow: 'hidden',
 		width: '23vw',
 		height: '100%',
-
-		// borderLeft: 'solid 6px #404db5',
 		borderRight: 'solid 15px #404db5'
 	},
 	gridList: {
@@ -95,7 +93,7 @@ export default function TitlebarGridList() {
 								/>
 								<GridListTileBar
 									titlePosition="top"
-									key={tile.url}
+									key={tile.title}
 									className={classes.text}
 									subtitle={
 										<span>

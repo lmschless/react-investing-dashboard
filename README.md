@@ -15,10 +15,6 @@
 * Work on text styling and spacing on cards. Make name and price more prominent
 * Add hook to refresh quotes on page load or every ~15 min
 * Refactor entire app to use function components and hooks
-<<<<<<< HEAD
-
-=======
->>>>>>> f1c9dfaa8877cf6d07bd4a49b4a3536e86689fee
 
 
 ##### Description

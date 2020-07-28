@@ -1,6 +1,6 @@
 ## React Investing Dashboard 
-## Capstone Project for Epicodus React-JS
-## June 2020
+### Capstone Project for Epicodus React-JS
+#### June 2020
 
 ###### By Luke Schlessinger
 

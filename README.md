@@ -1,4 +1,5 @@
-## React Investing Dashboard Live deployment: https://lmschless.github.io/epicodus-capstone-stocks/
+## React Investing Dashboard 
+## Live deployment: https://lmschless.github.io/epicodus-capstone-stocks/
 ### Capstone Project for Epicodus React-JS
 #### June 2020
 

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4d5d6f8781a7dc63cf151c9a9588c894",
+    "revision": "20a9b10ecfc5c58e34be777796aafcee",
     "url": "/epicodus-capstone-stocks/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/epicodus-capstone-stocks/static/css/2.1b23bde0.chunk.css"
   },
   {
-    "revision": "87c018544f7ab4d4b62e",
+    "revision": "c305d2b4709b89cdfd94",
     "url": "/epicodus-capstone-stocks/static/css/main.11680e85.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/epicodus-capstone-stocks/static/js/2.dacf6983.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "87c018544f7ab4d4b62e",
-    "url": "/epicodus-capstone-stocks/static/js/main.b16088bd.chunk.js"
+    "revision": "c305d2b4709b89cdfd94",
+    "url": "/epicodus-capstone-stocks/static/js/main.c86a3622.chunk.js"
   },
   {
     "revision": "807bf1fdfadaf983dcc9",

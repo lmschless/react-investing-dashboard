@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/epicodus-capstone-stocks/static/css/main.11680e85.chunk.css",
-    "main.js": "/epicodus-capstone-stocks/static/js/main.b16088bd.chunk.js",
-    "main.js.map": "/epicodus-capstone-stocks/static/js/main.b16088bd.chunk.js.map",
+    "main.js": "/epicodus-capstone-stocks/static/js/main.c86a3622.chunk.js",
+    "main.js.map": "/epicodus-capstone-stocks/static/js/main.c86a3622.chunk.js.map",
     "runtime-main.js": "/epicodus-capstone-stocks/static/js/runtime-main.707e87f9.js",
     "runtime-main.js.map": "/epicodus-capstone-stocks/static/js/runtime-main.707e87f9.js.map",
     "static/css/2.1b23bde0.chunk.css": "/epicodus-capstone-stocks/static/css/2.1b23bde0.chunk.css",
     "static/js/2.dacf6983.chunk.js": "/epicodus-capstone-stocks/static/js/2.dacf6983.chunk.js",
     "static/js/2.dacf6983.chunk.js.map": "/epicodus-capstone-stocks/static/js/2.dacf6983.chunk.js.map",
     "index.html": "/epicodus-capstone-stocks/index.html",
-    "precache-manifest.21e833777a43d918acf372f46f383e8e.js": "/epicodus-capstone-stocks/precache-manifest.21e833777a43d918acf372f46f383e8e.js",
+    "precache-manifest.d2c55a5d5823bc0a810de8880f691d43.js": "/epicodus-capstone-stocks/precache-manifest.d2c55a5d5823bc0a810de8880f691d43.js",
     "service-worker.js": "/epicodus-capstone-stocks/service-worker.js",
     "static/css/2.1b23bde0.chunk.css.map": "/epicodus-capstone-stocks/static/css/2.1b23bde0.chunk.css.map",
     "static/css/main.11680e85.chunk.css.map": "/epicodus-capstone-stocks/static/css/main.11680e85.chunk.css.map",
@@ -22,6 +22,6 @@
     "static/css/2.1b23bde0.chunk.css",
     "static/js/2.dacf6983.chunk.js",
     "static/css/main.11680e85.chunk.css",
-    "static/js/main.b16088bd.chunk.js"
+    "static/js/main.c86a3622.chunk.js"
   ]
 }

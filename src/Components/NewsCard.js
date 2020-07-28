@@ -6,6 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import moment from 'moment';
+import { v4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -46,7 +47,7 @@ export default function TitlebarGridList() {
 	useEffect(() => {
 		const getNews = async () => {
 			const result = await axios(
-				'https://newsapi.org/v2/top-headlines?country=us&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
+				'//newsapi.org/v2/top-headlines?country=us&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
 			);
 			console.log(result.data.articles);
 
@@ -63,7 +64,8 @@ export default function TitlebarGridList() {
 						author,
 						date: moment(date).format('MMMM  Do, YYYY, h:mm a'),
 						image,
-						url
+						url,
+						key: v4()
 					})
 				);
 			// setData(result.data.articles);
@@ -78,11 +80,11 @@ export default function TitlebarGridList() {
 
 	return (
 		<div className={classes.root}>
-			<GridList cellHeight={280} className={classes.gridList}>
+			<GridList key={v4()} cellHeight={280} className={classes.gridList}>
 				<Grid container direction="row" alignItems="center">
 					{Array.from(data).map((tile) => (
 						<a href={tile.url}>
-							<GridListTile key={tile.url}>
+							<GridListTile key={v4()}>
 								<img
 									className={classes.img}
 									height="450"
@@ -93,7 +95,7 @@ export default function TitlebarGridList() {
 								/>
 								<GridListTileBar
 									titlePosition="top"
-									key={tile.title}
+									key={v4()}
 									className={classes.text}
 									subtitle={
 										<span>

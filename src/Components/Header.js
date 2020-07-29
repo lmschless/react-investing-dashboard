@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 			display: 'block'
 		}
 	},
+
 	text: {
 		padding: theme.spacing(2, 2, 0)
 	},
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	search: {
 		position: 'relative',
-		borderRadius: 0,
+		borderRadius: '0%',
 		backgroundColor: fade(theme.palette.common.white, 0.15),
 		'&:hover': {
 			backgroundColor: fade(theme.palette.common.white, 0.25)
@@ -64,7 +65,9 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center'
 	},
 	inputRoot: {
-		color: 'inherit'
+		color: 'inherit',
+		borderRadius: '0%',
+		transition: null
 	},
 
 	inputInput: {
@@ -73,17 +76,15 @@ const useStyles = makeStyles((theme) => ({
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		// transition: theme.transitions.create('width'),
 		width: '100%',
+		borderRadius: '0%',
+
 		[theme.breakpoints.up('md')]: {
 			width: '20ch'
+		},
+		iconButton: {
+			borderRadius: '0%',
+			transition: null
 		}
-	},
-	fabButton: {
-		position: 'absolute',
-		zIndex: 1,
-		top: -30,
-		left: 0,
-		right: 0,
-		margin: '0 auto'
 	}
 }));
 
@@ -106,22 +107,23 @@ export default function Header(props) {
 					</Typography>
 					<div className={classes.grow} />
 					NYSE : &nbsp; <span style={{ backgroundColor: 'red' }}>Closed</span>
-					<IconButton color="inherit">
-						<div className={classes.search}>
-							<div className={classes.searchIcon}>
-								<SearchIcon />
-							</div>
-							<InputBase
-								onChange={(e) => setInput(e.target.value)}
-								placeholder="Search…"
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput
-								}}
-								inputProps={{ 'aria-label': 'search' }}
-							/>
-						</div>{' '}
-					</IconButton>
+					{/* Commenting this out to fix messy styling when hovering the search box. */}
+					{/* <IconButton className={classes.iconButton} color="inherit"> */}
+					<div className={classes.search}>
+						<div className={classes.searchIcon}>
+							<SearchIcon />
+						</div>
+						<InputBase
+							onChange={(e) => setInput(e.target.value)}
+							placeholder="Search…"
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/>
+					</div>{' '}
+					{/* </IconButton> */}
 					<Button
 						onClick={() => {
 							console.log(userInput);

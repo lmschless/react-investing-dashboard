@@ -5,7 +5,7 @@ import Switch from '@material-ui/core/Switch';
 
 export default function SwitchMode() {
 	const [ state, setState ] = React.useState({
-		checkedA: true,
+		checkedA: { checked: true, mode: 'Demo Mode' },
 		checkedB: true
 	});
 
@@ -18,13 +18,12 @@ export default function SwitchMode() {
 			<FormControlLabel
 				control={
 					<Switch
-						checked={state.checkedB}
+						checked={state.checkedA}
 						onChange={handleChange}
-						name="checkedB"
-						color="primary"
+						name="checkedA"
 					/>
 				}
-				label="Primary"
+				label={state.checkedA.mode}
 			/>
 		</FormGroup>
 	);

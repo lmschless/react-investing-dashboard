@@ -12,6 +12,8 @@ import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import SwitchMode from './SwitchMode';
+import { Switch } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -126,6 +128,9 @@ export default function Header(props) {
 					{/* </IconButton> */}
 					<Button
 						onClick={() => {
+							if (userInput === '') {
+								return console.log('Please enter a stock before searching.');
+							}
 							console.log(userInput);
 							props.searchStock(userInput);
 						}}
@@ -136,6 +141,7 @@ export default function Header(props) {
 					>
 						Add Stock
 					</Button>
+					<SwitchMode />
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

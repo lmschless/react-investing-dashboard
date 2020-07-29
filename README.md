@@ -7,6 +7,7 @@
 
 ### To-do Changelog: 
 * Figure out CORS issue with newsfeed
+* ~~Resolve child key error~~
 * Hide APIs in env file
 * Update market open/close flag to be dynamic
 * Update newsfeed height/spacing

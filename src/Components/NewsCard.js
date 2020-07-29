@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TitlebarGridList() {
-	const [ data, setData ] = useState({ test: [] });
+	const [ data, setData ] = useState({ news: [] });
 
 	useEffect(() => {
 		const getNews = async () => {

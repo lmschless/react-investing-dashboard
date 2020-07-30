@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
-import { VictoryTheme, VictoryLine, VictoryChart } from 'victory';
 import { formatTimeFromNow } from './utils/time';
 
 const useStyles = makeStyles({
@@ -16,8 +15,7 @@ const useStyles = makeStyles({
 		maxWidth: 330,
 		maxHeight: '385px',
 		minWidth: 295,
-		minHeight: '385px',
-		border: 'solid .5px white'
+		minHeight: '385px'
 	}
 });
 
@@ -83,29 +81,6 @@ export default function Stocks(props) {
 				<Typography gutterBottom variant="h5" component="h2">
 					{props.name}
 				</Typography>
-				{/* <div style={{ height: '100px' }}>
-					<VictoryLine
-						style={{
-							data: {
-								stroke: '#404db5',
-								strokeWidth: ({ data }) => data.length
-							},
-							labels: {
-								fontSize: 15,
-								fill: ({ datum }) => (datum.x === 3 ? '#c43a31' : '#fffeff')
-							}
-						}}
-						data={[
-							{ x: 1, y: 2 },
-							{ x: 2, y: 3 },
-							{ x: 3, y: 5 },
-							{ x: 4, y: 4 },
-							{ x: 5, y: 6 }
-						]}
-						labels={({ datum }) => datum.x}
-					/>
-				</div> */}
-				{/* <div> */}
 				<Typography gutterBottom variant="h5" component="h2">
 					{price}
 					<br />

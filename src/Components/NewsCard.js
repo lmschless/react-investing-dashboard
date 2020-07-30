@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 	img: {
 		left: 0,
 		right: 0,
-
 		transform: 'translateX(0%)'
 	}
 }));
@@ -80,7 +79,7 @@ export default function TitlebarGridList() {
 
 	return (
 		<div className={classes.root}>
-			<GridList key={v4()} cellHeight={280} className={classes.gridList}>
+			<GridList key={v4()} cellHeight={100} className={classes.gridList}>
 				<Grid container direction="row" alignItems="center">
 					{Array.from(data).map((tile) => (
 						<div key={v4()}>

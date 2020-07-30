@@ -28,7 +28,7 @@ export default function Stocks(props) {
 	if (change > 0) {
 		change = <span style={{ color: 'green' }}>({change}%)</span>;
 	} else {
-		change = <span style={{ color: 'red' }}>({change}%)</span>;
+		change = <span style={{ color: '#f40056' }}>({change}%)</span>;
 	}
 
 	const classes = useStyles();

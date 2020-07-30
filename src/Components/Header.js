@@ -13,7 +13,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
-import { Switch } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 	grow: {
 		flexGrow: 1
 	},
+
 	search: {
 		position: 'relative',
 		borderRadius: '0%',
@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
 		color: 'inherit',
 		borderRadius: '0%',
 		transition: null
+	},
+	addStockButton: {
+		marginLeft: '1rem',
+		marginRight: '1rem'
 	},
 
 	inputInput: {
@@ -108,7 +112,8 @@ export default function Header(props) {
 						{currentTime}
 					</Typography>
 					<div className={classes.grow} />
-					NYSE : &nbsp; <span style={{ backgroundColor: 'red' }}>Closed</span>
+					NYSE : &nbsp;{' '}
+					<span style={{ backgroundColor: '#f40056' }}>Market Closed</span>
 					{/* Commenting this out to fix messy styling when hovering the search box. */}
 					{/* <IconButton className={classes.iconButton} color="inherit"> */}
 					<div className={classes.search}>
@@ -136,7 +141,7 @@ export default function Header(props) {
 						}}
 						variant="contained"
 						color="secondary"
-						className={classes.button}
+						className={classes.addStockButton}
 						endIcon={<Icon>add</Icon>}
 					>
 						Add Stock

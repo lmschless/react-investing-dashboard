@@ -7,7 +7,6 @@ export default function SwitchMode() {
 	const [ state, setState ] = React.useState({
 		checked: false,
 		demo: true
-		// checkedB: true
 	});
 
 	const handleChange = () => {

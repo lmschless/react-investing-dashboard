@@ -101,18 +101,26 @@ export default function Header(props) {
 	const currentDay = moment().format('dddd');
 	const time = moment.utc().format('hhmm');
 
-	const [ marketStatus, setStatus ] = useState({ open: null });
+	const [ marketStatus, setStatus ] = useState(false);
 
-	useEffect((time) => {
-		console.log(time);
-		if (time > 1330 && time < 2000) {
-			setStatus(true);
-			console.log('Market Open!');
-		} else {
-			setStatus(false);
-			console.log('Market Closed!');
-		}
-	}, []);
+	useEffect(
+		() => {
+			console.log(time);
+			if (
+				time > 1330 &&
+				time < 2000 &&
+				currentDay !== 'Saturday' &&
+				currentDay !== 'Sunday'
+			) {
+				setStatus(true);
+				console.log('Market Open!');
+			} else {
+				setStatus(false);
+				console.log('Market Closed!');
+			}
+		},
+		[ time ]
+	);
 
 	return (
 		<React.Fragment>
@@ -128,8 +136,8 @@ export default function Header(props) {
 					</Typography>
 					<div className={classes.grow} />
 					NYSE : &nbsp;{' '}
-					{marketStatus.open ? (
-						<span style={{ backgroundColor: 'white' }}>Market Open</span>
+					{marketStatus ? (
+						<span style={{ backgroundColor: 'green' }}>Market Open</span>
 					) : (
 						<span style={{ backgroundColor: '#f40056' }}>Market Closed</span>
 					)}

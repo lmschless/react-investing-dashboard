@@ -17,6 +17,7 @@
 * Work on text styling and spacing on cards. Make name and price more prominent
 * Add hook to refresh quotes on page load or every ~15 min
 * Refactor entire app to use function components and hooks
+* ~~Auto-hide search error alert after 4 seconds~~
 
 
 ##### Description

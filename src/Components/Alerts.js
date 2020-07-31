@@ -10,18 +10,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertText(props) {
 	const classes = useStyles();
-	const [ test, setTest ] = useState(null);
-	useEffect(() => {
-		setTest(
-			<div className={classes.root}>
-				<Alert severity="error">{props.alertText}</Alert>
-			</div>
-		);
-		setTimeout(() => {
-			setTest(null);
-		}, 4000);
-	}, []);
-	return test; // <div className={classes.root}>
-	// 	<Alert severity="error">{props.alertText}</Alert>
-	// </div>
+
+	// const [ test, setTest ] = useState(null);
+	// useEffect(() => {
+	// 	setTest(
+	// 		<div className={classes.root}>
+	// 			<Alert severity="error">{props.alertText}</Alert>
+	// 		</div>
+	// 	);
+	// 	setTimeout(() => {
+	// 		setTest(null);
+	// 	}, 4000);
+	// }, []);
+	// return test;
+
+	return (
+		<div className={classes.root}>
+			<Alert severity="error">{props.alertText}</Alert>
+		</div>
+	);
 }

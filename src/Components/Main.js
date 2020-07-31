@@ -168,6 +168,21 @@ export class Main extends Component {
 		this.setState({ fallbackStocks: filteredStocks });
 	};
 
+	handleError = () => {
+		this.setState({
+			alert: (
+				<span>
+					<AlertText alertText="Error: That ticker already exists, please try another." />
+				</span>
+			)
+		});
+		setTimeout(() => {
+			this.setState({
+				alert: null
+			});
+		}, 5000);
+	};
+
 	handleSearchStock = async (input) => {
 		await axios
 			.get(
@@ -179,13 +194,7 @@ export class Main extends Component {
 				// checks for duplicate symbol. triggers alert if true
 				this.handleCheck(result) === false
 					? this.handleAddStock(result)
-					: this.setState({
-							alert: (
-								<span>
-									<AlertText alertText="Error: That ticker already exists, please try another." />
-								</span>
-							)
-						});
+					: this.handleError();
 			})
 			.catch((error) => console.log(error));
 	};

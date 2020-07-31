@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -98,6 +98,21 @@ export default function Header(props) {
 	const [ userInput, setInput ] = useState('');
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
+	const currentDay = moment().format('dddd');
+	const time = moment.utc().format('hhmm');
+
+	const [ marketStatus, setStatus ] = useState({ open: null });
+
+	useEffect((time) => {
+		console.log(time);
+		if (time > 1330 && time < 2000) {
+			setStatus(true);
+			console.log('Market Open!');
+		} else {
+			setStatus(false);
+			console.log('Market Closed!');
+		}
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -113,7 +128,11 @@ export default function Header(props) {
 					</Typography>
 					<div className={classes.grow} />
 					NYSE : &nbsp;{' '}
-					<span style={{ backgroundColor: '#f40056' }}>Market Closed</span>
+					{marketStatus.open ? (
+						<span style={{ backgroundColor: 'white' }}>Market Open</span>
+					) : (
+						<span style={{ backgroundColor: '#f40056' }}>Market Closed</span>
+					)}
 					{/* Commenting this out to fix messy styling when hovering the search box. */}
 					{/* <IconButton className={classes.iconButton} color="inherit"> */}
 					<div className={classes.search}>

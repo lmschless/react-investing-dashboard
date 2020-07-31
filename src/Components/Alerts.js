@@ -8,12 +8,12 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function AlertText() {
+export default function AlertText(props) {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
-			<Alert severity="error">Stock Ticker Already Exists</Alert>
+			<Alert severity="error">{props.alertText}</Alert>
 		</div>
 	);
 }

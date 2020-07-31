@@ -205,7 +205,7 @@ export class Main extends Component {
 					/>
 					<main className={classes.content}>
 						<span className={showAlert}>
-							<AlertText />
+							<AlertText alertText="Error: That ticker already exists, please try another." />
 						</span>
 
 						<div style={gridContainer}>

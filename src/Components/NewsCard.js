@@ -45,30 +45,42 @@ export default function TitlebarGridList() {
 
 	useEffect(() => {
 		const getNews = async () => {
-			const result = await axios(
-				'//newsapi.org/v2/top-headlines?country=us&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
-			);
-			console.log(result.data.articles);
-
-			// filters out responses that have a null title, author, image, etc.
-			const filtered = result.data.articles
-				.filter(({ title, author, publishedAt, urlToImage, url }) =>
-					[ title, author, publishedAt, urlToImage, url ].every(
-						(prop) => prop !== null
-					)
+			await axios
+				.get(
+					'//newsapi.org/v2/top-headlines?country=us&language=en&sortBy=publishedAt&pageSize=40&apiKey=90ddee78a57f435fa9efe02754a6176a'
 				)
-				.map(
-					({ title, author, publishedAt: date, urlToImage: image, url }) => ({
-						title,
-						author,
-						date: moment(date).format('MMMM  Do, YYYY, h:mm a'),
-						image,
-						url,
-						key: v4()
-					})
-				);
-			// setData(result.data.articles);
-			setData(filtered);
+				// added error handling
+				.catch((error) => console.log(error))
+				.then((response) => {
+					const result = response;
+					console.log(result.data.articles);
+					// filters out responses that have a null title, author, image, etc.
+					const filtered = result.data.articles
+						.filter(({ title, author, publishedAt, urlToImage, url }) =>
+							[ title, author, publishedAt, urlToImage, url ].every(
+								(prop) => prop !== null
+							)
+						)
+						.map(
+							({
+								title,
+								author,
+								publishedAt: date,
+								urlToImage: image,
+								url
+							}) => ({
+								title,
+								author,
+								date: moment(date).format('MMMM  Do, YYYY, h:mm a'),
+								image,
+								url,
+								key: v4()
+							})
+						);
+
+					// setData(result.data.articles);
+					setData(filtered);
+				});
 		};
 		getNews();
 	}, []);
@@ -79,7 +91,7 @@ export default function TitlebarGridList() {
 
 	return (
 		<div className={classes.root}>
-			<GridList key={v4()} cellHeight={100} className={classes.gridList}>
+			<GridList key={v4()} cellHeight={280} className={classes.gridList}>
 				<Grid container direction="row" alignItems="center">
 					{Array.from(data).map((tile) => (
 						<div key={v4()}>
@@ -94,7 +106,7 @@ export default function TitlebarGridList() {
 										alt={tile.title}
 									/>
 									<GridListTileBar
-										titlePosition="top"
+										titlePosition="bottom"
 										className={classes.text}
 										subtitle={
 											<span>

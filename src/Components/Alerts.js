@@ -1,6 +1,6 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
+import React, { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -10,10 +10,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertText(props) {
 	const classes = useStyles();
-
-	return (
-		<div className={classes.root}>
-			<Alert severity="error">{props.alertText}</Alert>
-		</div>
-	);
+	const [ test, setTest ] = useState(null);
+	useEffect(() => {
+		setTest(
+			<div className={classes.root}>
+				<Alert severity="error">{props.alertText}</Alert>
+			</div>
+		);
+		setTimeout(() => {
+			setTest(null);
+		}, 4000);
+	}, []);
+	return test; // <div className={classes.root}>
+	// 	<Alert severity="error">{props.alertText}</Alert>
+	// </div>
 }

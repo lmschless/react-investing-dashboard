@@ -32,7 +32,7 @@ export class Main extends Component {
 		super(props);
 
 		this.state = {
-			alert: false,
+			alert: null,
 			stocks: [],
 			image: require('./../assets/stock-placeholder.jpg'),
 			fallbackStocks: [
@@ -158,7 +158,7 @@ export class Main extends Component {
 	handleAddStock = (result) => {
 		let newStockList = this.state.fallbackStocks;
 		newStockList.unshift(result);
-		this.setState({ fallbackStocks: newStockList, alert: false });
+		this.setState({ fallbackStocks: newStockList, alert: null });
 	};
 
 	handleDeleteStock = (id) => {
@@ -179,14 +179,27 @@ export class Main extends Component {
 				// checks for duplicate symbol. triggers alert if true
 				this.handleCheck(result) === false
 					? this.handleAddStock(result)
-					: this.setState({ alert: true });
+					: this.setState({
+							alert: (
+								<span>
+									<AlertText alertText="Error: That ticker already exists, please try another." />
+								</span>
+							)
+						});
 			})
 			.catch((error) => console.log(error));
 	};
 
+	// handleAlert = () => {
+	// 	this.setState({ show: 'classes.hide' });
+	// 	setTimeout(() => {
+	// 		this.setState({ show: '' });
+	// 	}, 3000);
+	// };
+
 	render() {
 		const { classes } = this.props;
-		const showAlert = this.state.alert ? null : classes.hide;
+		// const showAlert = this.state.alert ? null : classes.hide;
 		const gridContainer = {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
@@ -204,9 +217,7 @@ export class Main extends Component {
 						searchStock={this.handleSearchStock}
 					/>
 					<main className={classes.content}>
-						<span className={showAlert}>
-							<AlertText alertText="Error: That ticker already exists, please try another." />
-						</span>
+						{this.state.alert}
 
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}

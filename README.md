@@ -10,7 +10,7 @@
 * ~~Add dynamic switch for demo/user mode~~
 * ~~Resolve child key error~~
 * Hide APIs in env file
-* Update market open/close flag to be dynamic
+* ~~Update market open/close flag to be dynamic~~
 * Update newsfeed height/spacing
 * ~~Work on search box styling, possibly button~~
 * Add suggested search terms based on user input

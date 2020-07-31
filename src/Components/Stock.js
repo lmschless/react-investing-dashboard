@@ -14,8 +14,8 @@ const useStyles = makeStyles({
 	root: {
 		maxWidth: 330,
 		maxHeight: '385px',
-		minWidth: 295,
-		minHeight: '385px'
+		minWidth: 285,
+		minHeight: '380px'
 	}
 });
 

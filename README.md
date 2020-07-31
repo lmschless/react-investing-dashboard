@@ -6,18 +6,20 @@
 ###### By Luke Schlessinger
 
 ### To-do Changelog: 
+* Work on cards layout. Possibly new component, smaller cards. 
+* Add button to swap to secondary list/table layout.
 * Figure out CORS issue with newsfeed
-* ~~Add dynamic switch for demo/user mode~~
-* ~~Resolve child key error~~
 * Hide APIs in env file
-* ~~Update market open/close flag to be dynamic~~
 * Update newsfeed height/spacing
-* ~~Work on search box styling, possibly button~~
 * Add suggested search terms based on user input
 * Work on text styling and spacing on cards. Make name and price more prominent
 * Add hook to refresh quotes on page load or every ~15 min
 * Refactor entire app to use function components and hooks
 * ~~Auto-hide search error alert after 4 seconds~~
+* ~~Add dynamic switch for demo/user mode~~
+* ~~Resolve child key error~~
+* ~~Update market open/close flag to be dynamic~~
+* ~~Work on search box styling, possibly button~~
 
 
 ##### Description

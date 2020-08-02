@@ -84,6 +84,10 @@ export default function TitlebarGridList() {
 		};
 		getNews();
 	}, []);
+	// [] prevents useEffect from running on every single rerender
+	// can also specify when useEffect should run by passing in
+	// specific variables or data. ex: [data]
+
 	// console.log('data:');
 	// console.log({ data });
 

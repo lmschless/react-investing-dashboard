@@ -32,6 +32,7 @@
 // call useState AND a function to toggle it
 import { useState } from 'react';
 // start function with initivalVal or false if no value is passed in.
+// convention is to start custom hooks with "use"
 function useToggle(initialVal = false) {
 	// call useState, "reserve piece of state"
 	const [ state, setState ] = useState(initialVal);

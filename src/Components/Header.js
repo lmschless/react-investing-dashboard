@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 			display: 'block'
 		}
 	},
-
 	text: {
 		padding: theme.spacing(2, 2, 0)
 	},
@@ -39,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 	grow: {
 		flexGrow: 1
 	},
-
 	search: {
 		position: 'relative',
 		borderRadius: '0%',
@@ -73,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: '1rem',
 		marginRight: '1rem'
 	},
-
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
@@ -81,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
 		// transition: theme.transitions.create('width'),
 		width: '100%',
 		borderRadius: '0%',
-
 		[theme.breakpoints.up('md')]: {
 			width: '20ch'
 		},
@@ -91,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
 		}
 	}
 }));
-
 export default function Header(props) {
 	const [ userInput, setInput ] = useState('');
 	const classes = useStyles();
@@ -117,7 +112,7 @@ export default function Header(props) {
 				console.log('Market Closed!');
 			}
 		},
-		[ time ]
+		[ currentDay, time ]
 	);
 
 	return (

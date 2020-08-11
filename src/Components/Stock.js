@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import { formatTimeFromNow } from './utils/time';
+import styled from 'styled-components';
 
 const useStyles = makeStyles({
 	root: {
@@ -19,17 +20,22 @@ const useStyles = makeStyles({
 	}
 });
 
+const StyledSpan = styled.span`
+	color: '${(props) => (props.change > 0 ? 'green' : '#f40056')}';
+`;
+
 export default function Stocks(props) {
 	const price = parseFloat(props.price).toFixed(2);
 	const open = parseFloat(props.open).toFixed(2);
 	const close = parseFloat(props.close).toFixed(2);
-	let change = parseFloat(props.change).toFixed(2);
+	let fixedChange = parseFloat(props.change).toFixed(2);
+	const [ change, setChange ] = useState(fixedChange);
 
-	if (change > 0) {
-		change = <span style={{ color: 'green' }}>({change}%)</span>;
-	} else {
-		change = <span style={{ color: '#f40056' }}>({change}%)</span>;
-	}
+	// if (change > 0) {
+	// 	change = <span style={{ color: 'green' }}>({change}%)</span>;
+	// } else {
+	// 	change = <span style={{ color: '#f40056' }}>({change}%)</span>;
+	// }
 
 	const classes = useStyles();
 
@@ -68,7 +74,6 @@ export default function Stocks(props) {
 	const image = require('./../assets/stock-placeholder.jpg');
 	return (
 		<Card className={classes.root}>
-			{/* <VictoryChart> */}
 			<CardMedia
 				className={classes.media}
 				component="img"
@@ -84,7 +89,7 @@ export default function Stocks(props) {
 				<Typography gutterBottom variant="h5" component="h2">
 					{price}
 					<br />
-					{change}
+					<StyledSpan change={change}>{change}%</StyledSpan>
 				</Typography>
 				Open: {open}
 				<br />

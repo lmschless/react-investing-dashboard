@@ -20,25 +20,20 @@ const useStyles = makeStyles({
 	}
 });
 
+// have to use an attribute prop on the StyledSpan component. Added true/false values there so this statement can evaluate those instead of the actual condition.
 const StyledSpan = styled.span`
-	color: '${(props) => (props.change > 0 ? 'green' : '#f40056')}';
+	color: ${(props) => (props.colorChange ? 'green' : '#f40056')};
 `;
-
-export default function Stocks(props) {
-	const price = parseFloat(props.price).toFixed(2);
-	const open = parseFloat(props.open).toFixed(2);
-	const close = parseFloat(props.close).toFixed(2);
-	let fixedChange = parseFloat(props.change).toFixed(2);
-	const [ change, setChange ] = useState(fixedChange);
-
-	// if (change > 0) {
-	// 	change = <span style={{ color: 'green' }}>({change}%)</span>;
-	// } else {
-	// 	change = <span style={{ color: '#f40056' }}>({change}%)</span>;
-	// }
+export default function TickerCard(props) {
+	const [ state, setState ] = useState({
+		price: parseFloat(props.price).toFixed(2),
+		open: parseFloat(props.open).toFixed(2),
+		close: parseFloat(props.close).toFixed(2),
+		fixedChange: parseFloat(props.change).toFixed(2),
+		cardImage: require('./../assets/stock-placeholder.jpg')
+	});
 
 	const classes = useStyles();
-
 	// const [ data, setData ] = useState({ metaData: [] });
 
 	// useEffect(() => {
@@ -66,12 +61,10 @@ export default function Stocks(props) {
 
 	// // const symbol = data.["Meta Data"];
 	// // console.log(symbol);
-	// const image = require('./../assets/stock-placeholder.jpg');
 
 	const cardStyles = {
 		justifyContent: 'center'
 	};
-	const image = require('./../assets/stock-placeholder.jpg');
 	return (
 		<Card className={classes.root}>
 			<CardMedia
@@ -79,7 +72,7 @@ export default function Stocks(props) {
 				component="img"
 				alt="Stock placeholder image"
 				height="120"
-				image={image}
+				image={state.cardImage}
 				title="Default Stock Image"
 			/>
 			<CardContent>
@@ -87,13 +80,15 @@ export default function Stocks(props) {
 					{props.name}
 				</Typography>
 				<Typography gutterBottom variant="h5" component="h2">
-					{price}
+					{state.price}
 					<br />
-					<StyledSpan change={change}>{change}%</StyledSpan>
+					<StyledSpan colorChange={state.fixedChange > 0 ? true : false}>
+						{state.fixedChange}%
+					</StyledSpan>
 				</Typography>
-				Open: {open}
+				Open: {state.open}
 				<br />
-				Previous Close: {close}
+				Previous Close: {state.close}
 				<hr />
 				Last updated {formatTimeFromNow()}
 				<CardActions style={cardStyles}>
@@ -111,7 +106,7 @@ export default function Stocks(props) {
 	);
 }
 
-Stocks.propTypes = {
+TickerCard.propTypes = {
 	stock: PropTypes.string,
 	delete: PropTypes.func,
 	name: PropTypes.string,

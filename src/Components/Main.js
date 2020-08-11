@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles, useTheme } from '@material-ui/core/styles';
-import Stock from './Stock';
+import TickerCard from './TickerCard';
 import Header from './Header';
 import NewsCard from './NewsCard';
 import axios from 'axios';
@@ -231,7 +231,7 @@ export class Main extends Component {
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}
 							{this.state.fallbackStocks.map((stock) => (
-								<Stock
+								<TickerCard
 									name={stock['01. symbol']}
 									key={stock['01. symbol']}
 									price={stock['05. price']}

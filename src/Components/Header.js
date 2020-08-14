@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
+import useInputState from '../Hooks/useInputState.js';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -88,7 +89,10 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 export default function Header(props) {
-	const [ userInput, setInput ] = useState('');
+	// const [ userInput, setInput ] = useState('');
+	// now using custom hook to handle this
+	const [ value, handleChange, reset ] = useInputState('');
+
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
 	const currentDay = moment().format('dddd');
@@ -140,25 +144,40 @@ export default function Header(props) {
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
-						<InputBase
-							onChange={(e) => setInput(e.target.value)}
-							placeholder="Search…"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput
+						<form
+							onSubmit={(e) => {
+								if (value === '') {
+									return console.log('Please enter a stock before searching.');
+								}
+								e.preventDefault();
+								handleChange(e);
+								props.searchStock(value);
+								reset();
 							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
+						>
+							<InputBase
+								onChange={(e) => {
+									handleChange(e);
+								}}
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
+						</form>
 					</div>{' '}
 					{/* </IconButton> */}
 					<Button
-						onClick={() => {
-							if (userInput === '') {
-								return console.log('Please enter a stock before searching.');
-							}
-							console.log(userInput);
-							props.searchStock(userInput);
-						}}
+						onClick={
+							value === '' ? (
+								// add future alert here using custom alert hook
+								console.log('Please enter a stock before searching.')
+							) : (
+								console.log(value) & props.searchStock(value)
+							)
+						}
 						variant="contained"
 						color="secondary"
 						className={classes.addStockButton}

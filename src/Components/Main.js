@@ -227,7 +227,6 @@ export class Main extends Component {
 					/>
 					<main className={classes.content}>
 						{this.state.alert}
-
 						<div style={gridContainer}>
 							{/* using fallback stocks object instead of api for now */}
 							{this.state.fallbackStocks.map((stock) => (

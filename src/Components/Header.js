@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
+import useInputState from '../Hooks/useInputState.js';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 			display: 'block'
 		}
 	},
-
 	text: {
 		padding: theme.spacing(2, 2, 0)
 	},
@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 	grow: {
 		flexGrow: 1
 	},
-
 	search: {
 		position: 'relative',
 		borderRadius: '0%',
@@ -73,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: '1rem',
 		marginRight: '1rem'
 	},
-
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
@@ -81,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
 		// transition: theme.transitions.create('width'),
 		width: '100%',
 		borderRadius: '0%',
-
 		[theme.breakpoints.up('md')]: {
 			width: '20ch'
 		},
@@ -93,32 +90,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header(props) {
-	const [ userInput, setInput ] = useState('');
+	// const [ userInput, setInput ] = useState('');
+	// now using custom hook to handle this
+	const [ value, handleChange, reset ] = useInputState('');
+
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
-	const currentDay = moment().format('dddd');
-	const time = moment.utc().format('hhmm');
-
 	const [ marketStatus, setStatus ] = useState(false);
+	const time = moment.utc().format('hhmm');
+	const currentDay = moment().format('dddd');
 
-	useEffect(
-		() => {
-			console.log(time);
-			if (
-				time > 1330 &&
-				time < 2000 &&
-				currentDay !== 'Saturday' &&
-				currentDay !== 'Sunday'
-			) {
-				setStatus(true);
-				console.log('Market Open!');
-			} else {
-				setStatus(false);
-				console.log('Market Closed!');
-			}
-		},
-		[ time ]
-	);
+	useEffect(() => {
+		console.log(time);
+		if (
+			time > 1330 &&
+			time < 2000 &&
+			currentDay !== 'Saturday' &&
+			currentDay !== 'Sunday'
+		) {
+			setStatus(true);
+			console.log('Market Open!');
+		} else {
+			setStatus(false);
+			console.log('Market Closed!');
+		}
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -145,25 +141,50 @@ export default function Header(props) {
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
-						<InputBase
-							onChange={(e) => setInput(e.target.value)}
-							placeholder="Search…"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput
+						<form
+							onSubmit={(e) => {
+								if (value === '') {
+									e.preventDefault();
+									return console.log('Please enter a stock before searching.');
+								} else {
+									e.preventDefault();
+									handleChange(e);
+									props.searchStock(value);
+									reset();
+								}
 							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
+						>
+							{/* <InputBase
+								onChange={(e) => {
+									handleChange(e);
+								}}
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/> */}
+							<InputBase
+								onChange={handleChange}
+								value={value}
+								type="text"
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
+						</form>
 					</div>{' '}
 					{/* </IconButton> */}
 					<Button
-						onClick={() => {
-							if (userInput === '') {
-								return console.log('Please enter a stock before searching.');
-							}
-							console.log(userInput);
-							props.searchStock(userInput);
-						}}
+						// onClick={() =>
+						// 	value === ''
+						// 		? // add future alert here using custom alert hook
+						// 			console.log('Please enter a stock before searching.')
+						// 		: console.log(value) & props.searchStock(value)}
 						variant="contained"
 						color="secondary"
 						className={classes.addStockButton}

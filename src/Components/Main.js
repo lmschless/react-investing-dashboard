@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { withStyles, useTheme } from '@material-ui/core/styles';
-import Stock from './Stock';
+import { withStyles } from '@material-ui/core/styles';
+import TickerCard from './TickerCard';
 import Header from './Header';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import AlertText from './Alerts';
+import stockData from '../Data/stockData';
+import TickerList from './TickerList';
+// const stockData = require('../Data/stockData');
 
 const styles = (theme) => ({
 	root: {
@@ -30,11 +33,12 @@ const styles = (theme) => ({
 export class Main extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			alert: null,
 			stocks: [],
 			image: require('./../assets/stock-placeholder.jpg'),
+			// use function to map over json and build array?
+
 			fallbackStocks: [
 				{
 					'01. symbol': 'IBM',
@@ -114,6 +118,18 @@ export class Main extends Component {
 			stock.id = v4();
 		});
 	}
+
+	// componentDidMount = async () => {
+	// 	let newData = { ...stockData };
+	// 	await this.setState({
+	// 		fallbackStocks: newData
+	// 	});
+	// 	console.log(this.state.fallbackStocks);
+	// 	// this.state.fallbackStocks.forEach((stock) => {
+	// 	// 	stock.id = v4();
+	// 	// });
+	// };
+
 	// componentDidMount = async () => {
 	// 	await axios
 	// 		.all([
@@ -150,8 +166,9 @@ export class Main extends Component {
 	// };
 
 	handleCheck = (val) => {
+		const matchingSymbol = val.toUpperCase();
 		return this.state.fallbackStocks.some(
-			(item) => val['01. symbol'] === item['01. symbol']
+			(item) => matchingSymbol === item['01. symbol']
 		);
 	};
 
@@ -159,13 +176,6 @@ export class Main extends Component {
 		let newStockList = this.state.fallbackStocks;
 		newStockList.unshift(result);
 		this.setState({ fallbackStocks: newStockList, alert: null });
-	};
-
-	handleDeleteStock = (id) => {
-		let filteredStocks = this.state.fallbackStocks.filter(
-			(stock) => stock.id !== id
-		);
-		this.setState({ fallbackStocks: filteredStocks });
 	};
 
 	handleError = () => {
@@ -184,39 +194,30 @@ export class Main extends Component {
 	};
 
 	handleSearchStock = async (input) => {
-		await axios
-			.get(
-				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=${input}`
-			)
-			.then((response) => {
-				let result = response.data['Global Quote'];
-				console.log(result);
-				// checks for duplicate symbol. triggers alert if true
-				this.handleCheck(result) === false
-					? this.handleAddStock(result)
-					: this.handleError();
-			})
-			.catch((error) => console.log(error));
+		const exists = this.handleCheck(input);
+		if (exists) {
+			this.handleError();
+		} else {
+			await axios
+				.get(
+					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=${input}`
+				)
+				.then((response) => {
+					let result = response.data['Global Quote'];
+					console.log(result);
+					this.handleAddStock(result);
+					// checks for duplicate symbol. triggers alert if true
+					// this.handleCheck(result) === false
+					// 	? this.handleAddStock(result)
+					// 	: this.handleError();
+				})
+				.catch((error) => console.log(error));
+		}
 	};
-
-	// handleAlert = () => {
-	// 	this.setState({ show: 'classes.hide' });
-	// 	setTimeout(() => {
-	// 		this.setState({ show: '' });
-	// 	}, 3000);
-	// };
 
 	render() {
 		const { classes } = this.props;
 		// const showAlert = this.state.alert ? null : classes.hide;
-		const gridContainer = {
-			display: 'grid',
-			gridTemplateColumns: 'repeat(3, 1fr)',
-			gridTemplateRows: 'repeat(2, 1fr)',
-			gridColumnGap: '.25em',
-			gridRowGap: '2.5em',
-			minHeight: '80vh'
-		};
 
 		return (
 			<React.Fragment>
@@ -228,10 +229,9 @@ export class Main extends Component {
 					<main className={classes.content}>
 						{this.state.alert}
 
-						<div style={gridContainer}>
-							{/* using fallback stocks object instead of api for now */}
-							{this.state.fallbackStocks.map((stock) => (
-								<Stock
+						{/* using fallback stocks object instead of api for now */}
+						{/* {this.state.fallbackStocks.map((stock) => (
+								<TickerCard
 									name={stock['01. symbol']}
 									key={stock['01. symbol']}
 									price={stock['05. price']}
@@ -241,8 +241,8 @@ export class Main extends Component {
 									id={stock.id}
 									delete={this.handleDeleteStock}
 								/>
-							))}
-						</div>
+							))} */}
+						<TickerList stockList={this.state.fallbackStocks} />
 					</main>
 					<NewsCard />
 				</div>

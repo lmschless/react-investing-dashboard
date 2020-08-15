@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 		gridTemplateColumns: '1fr',
 		width: '23vw',
 		height: '100vh',
-
 		overflowX: 'hidden'
 	},
 	text: {
@@ -36,13 +35,15 @@ const useStyles = makeStyles((theme) => ({
 	img: {
 		left: 0,
 		right: 0,
-		transform: 'translateX(0%)'
+		transform: 'translateX(0%)',
+		'&:hover': {
+			opacity: 0.8
+		}
 	}
 }));
 
-export default function TitlebarGridList() {
+export default function NewsFeed() {
 	const [ data, setData ] = useState({ news: [] });
-
 	useEffect(() => {
 		const getNews = async () => {
 			await axios
@@ -77,7 +78,6 @@ export default function TitlebarGridList() {
 								key: v4()
 							})
 						);
-
 					// setData(result.data.articles);
 					setData(filtered);
 				});
@@ -90,7 +90,6 @@ export default function TitlebarGridList() {
 
 	// console.log('data:');
 	// console.log({ data });
-
 	const classes = useStyles();
 
 	return (

@@ -14,9 +14,9 @@ import styled from 'styled-components';
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 330,
-		maxHeight: '385px',
-		minWidth: 285,
-		minHeight: '380px'
+		maxHeight: '350px',
+		minWidth: 250,
+		minHeight: '350px'
 	}
 });
 
@@ -71,7 +71,7 @@ export default function TickerCard(props) {
 				className={classes.media}
 				component="img"
 				alt="Stock placeholder image"
-				height="120"
+				height="90"
 				image={state.cardImage}
 				title="Default Stock Image"
 			/>

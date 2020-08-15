@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
 import useInputState from '../Hooks/useInputState.js';
-import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -89,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
 		}
 	}
 }));
+
 export default function Header(props) {
 	// const [ userInput, setInput ] = useState('');
 	// now using custom hook to handle this
@@ -96,13 +96,11 @@ export default function Header(props) {
 
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
-
 	const [ marketStatus, setStatus ] = useState(false);
+	const time = moment.utc().format('hhmm');
+	const currentDay = moment().format('dddd');
 
 	useEffect(() => {
-		const time = moment.utc().format('hhmm');
-		const currentDay = moment().format('dddd');
-
 		console.log(time);
 		if (
 			time > 1330 &&

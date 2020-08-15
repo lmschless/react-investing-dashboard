@@ -6,6 +6,9 @@ import NewsCard from './NewsCard';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import AlertText from './Alerts';
+import stockData from '../Data/stockData';
+import TickerList from './TickerList';
+// const stockData = require('../Data/stockData');
 
 const styles = (theme) => ({
 	root: {
@@ -34,6 +37,8 @@ export class Main extends Component {
 			alert: null,
 			stocks: [],
 			image: require('./../assets/stock-placeholder.jpg'),
+			// use function to map over json and build array?
+
 			fallbackStocks: [
 				{
 					'01. symbol': 'IBM',
@@ -113,6 +118,18 @@ export class Main extends Component {
 			stock.id = v4();
 		});
 	}
+
+	// componentDidMount = async () => {
+	// 	let newData = { ...stockData };
+	// 	await this.setState({
+	// 		fallbackStocks: newData
+	// 	});
+	// 	console.log(this.state.fallbackStocks);
+	// 	// this.state.fallbackStocks.forEach((stock) => {
+	// 	// 	stock.id = v4();
+	// 	// });
+	// };
+
 	// componentDidMount = async () => {
 	// 	await axios
 	// 		.all([
@@ -161,13 +178,6 @@ export class Main extends Component {
 		this.setState({ fallbackStocks: newStockList, alert: null });
 	};
 
-	handleDeleteStock = (id) => {
-		let filteredStocks = this.state.fallbackStocks.filter(
-			(stock) => stock.id !== id
-		);
-		this.setState({ fallbackStocks: filteredStocks });
-	};
-
 	handleError = () => {
 		this.setState({
 			alert: (
@@ -208,14 +218,6 @@ export class Main extends Component {
 	render() {
 		const { classes } = this.props;
 		// const showAlert = this.state.alert ? null : classes.hide;
-		const gridContainer = {
-			display: 'grid',
-			gridTemplateColumns: 'repeat(3, 1fr)',
-			gridTemplateRows: 'repeat(2, 1fr)',
-			gridColumnGap: '.25em',
-			gridRowGap: '2.5em',
-			minHeight: '80vh'
-		};
 
 		return (
 			<React.Fragment>
@@ -226,9 +228,9 @@ export class Main extends Component {
 					/>
 					<main className={classes.content}>
 						{this.state.alert}
-						<div style={gridContainer}>
-							{/* using fallback stocks object instead of api for now */}
-							{this.state.fallbackStocks.map((stock) => (
+
+						{/* using fallback stocks object instead of api for now */}
+						{/* {this.state.fallbackStocks.map((stock) => (
 								<TickerCard
 									name={stock['01. symbol']}
 									key={stock['01. symbol']}
@@ -239,8 +241,8 @@ export class Main extends Component {
 									id={stock.id}
 									delete={this.handleDeleteStock}
 								/>
-							))}
-						</div>
+							))} */}
+						<TickerList stockList={this.state.fallbackStocks} />
 					</main>
 					<NewsCard />
 				</div>

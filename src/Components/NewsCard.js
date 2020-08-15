@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 		gridTemplateColumns: '1fr',
 		width: '23vw',
 		height: '100vh',
-
 		overflowX: 'hidden'
 	},
 	text: {
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsFeed() {
 	const [ data, setData ] = useState({ news: [] });
-
 	useEffect(() => {
 		const getNews = async () => {
 			await axios
@@ -80,7 +78,6 @@ export default function NewsFeed() {
 								key: v4()
 							})
 						);
-
 					// setData(result.data.articles);
 					setData(filtered);
 				});
@@ -93,7 +90,6 @@ export default function NewsFeed() {
 
 	// console.log('data:');
 	// console.log({ data });
-
 	const classes = useStyles();
 
 	return (

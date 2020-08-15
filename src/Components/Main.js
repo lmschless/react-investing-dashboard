@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TickerCard from './TickerCard';
 import Header from './Header';
 import NewsCard from './NewsCard';
@@ -30,7 +30,6 @@ const styles = (theme) => ({
 export class Main extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			alert: null,
 			stocks: [],
@@ -150,8 +149,9 @@ export class Main extends Component {
 	// };
 
 	handleCheck = (val) => {
+		const matchingSymbol = val.toUpperCase();
 		return this.state.fallbackStocks.some(
-			(item) => val['01. symbol'] === item['01. symbol']
+			(item) => matchingSymbol === item['01. symbol']
 		);
 	};
 
@@ -184,27 +184,26 @@ export class Main extends Component {
 	};
 
 	handleSearchStock = async (input) => {
-		await axios
-			.get(
-				`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=${input}`
-			)
-			.then((response) => {
-				let result = response.data['Global Quote'];
-				console.log(result);
-				// checks for duplicate symbol. triggers alert if true
-				this.handleCheck(result) === false
-					? this.handleAddStock(result)
-					: this.handleError();
-			})
-			.catch((error) => console.log(error));
+		const exists = this.handleCheck(input);
+		if (exists) {
+			this.handleError();
+		} else {
+			await axios
+				.get(
+					`https://www.alphavantage.co/query?apikey=12UGV4HUPE1MOT6Y&function=GLOBAL_QUOTE&symbol=${input}`
+				)
+				.then((response) => {
+					let result = response.data['Global Quote'];
+					console.log(result);
+					this.handleAddStock(result);
+					// checks for duplicate symbol. triggers alert if true
+					// this.handleCheck(result) === false
+					// 	? this.handleAddStock(result)
+					// 	: this.handleError();
+				})
+				.catch((error) => console.log(error));
+		}
 	};
-
-	// handleAlert = () => {
-	// 	this.setState({ show: 'classes.hide' });
-	// 	setTimeout(() => {
-	// 		this.setState({ show: '' });
-	// 	}, 3000);
-	// };
 
 	render() {
 		const { classes } = this.props;

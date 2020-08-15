@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
 import useInputState from '../Hooks/useInputState.js';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -95,29 +96,27 @@ export default function Header(props) {
 
 	const classes = useStyles();
 	const currentTime = moment().format('MMMM  Do, YYYY, h:mm a');
-	const currentDay = moment().format('dddd');
-	const time = moment.utc().format('hhmm');
 
 	const [ marketStatus, setStatus ] = useState(false);
 
-	useEffect(
-		() => {
-			console.log(time);
-			if (
-				time > 1330 &&
-				time < 2000 &&
-				currentDay !== 'Saturday' &&
-				currentDay !== 'Sunday'
-			) {
-				setStatus(true);
-				console.log('Market Open!');
-			} else {
-				setStatus(false);
-				console.log('Market Closed!');
-			}
-		},
-		[ currentDay, time ]
-	);
+	useEffect(() => {
+		const time = moment.utc().format('hhmm');
+		const currentDay = moment().format('dddd');
+
+		console.log(time);
+		if (
+			time > 1330 &&
+			time < 2000 &&
+			currentDay !== 'Saturday' &&
+			currentDay !== 'Sunday'
+		) {
+			setStatus(true);
+			console.log('Market Open!');
+		} else {
+			setStatus(false);
+			console.log('Market Closed!');
+		}
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -147,18 +146,31 @@ export default function Header(props) {
 						<form
 							onSubmit={(e) => {
 								if (value === '') {
+									e.preventDefault();
 									return console.log('Please enter a stock before searching.');
+								} else {
+									e.preventDefault();
+									handleChange(e);
+									props.searchStock(value);
+									reset();
 								}
-								e.preventDefault();
-								handleChange(e);
-								props.searchStock(value);
-								reset();
 							}}
 						>
-							<InputBase
+							{/* <InputBase
 								onChange={(e) => {
 									handleChange(e);
 								}}
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/> */}
+							<InputBase
+								onChange={handleChange}
+								value={value}
+								type="text"
 								placeholder="Search…"
 								classes={{
 									root: classes.inputRoot,
@@ -170,14 +182,11 @@ export default function Header(props) {
 					</div>{' '}
 					{/* </IconButton> */}
 					<Button
-						onClick={
-							value === '' ? (
-								// add future alert here using custom alert hook
-								console.log('Please enter a stock before searching.')
-							) : (
-								console.log(value) & props.searchStock(value)
-							)
-						}
+						// onClick={() =>
+						// 	value === ''
+						// 		? // add future alert here using custom alert hook
+						// 			console.log('Please enter a stock before searching.')
+						// 		: console.log(value) & props.searchStock(value)}
 						variant="contained"
 						color="secondary"
 						className={classes.addStockButton}

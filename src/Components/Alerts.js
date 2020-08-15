@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

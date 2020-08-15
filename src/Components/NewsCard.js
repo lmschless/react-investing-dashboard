@@ -36,11 +36,14 @@ const useStyles = makeStyles((theme) => ({
 	img: {
 		left: 0,
 		right: 0,
-		transform: 'translateX(0%)'
+		transform: 'translateX(0%)',
+		'&:hover': {
+			opacity: 0.8
+		}
 	}
 }));
 
-export default function TitlebarGridList() {
+export default function NewsFeed() {
 	const [ data, setData ] = useState({ news: [] });
 
 	useEffect(() => {

@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import SwitchMode from './SwitchMode';
 import useInputState from '../Hooks/useInputState.js';
+import { fetchQuote } from '../Api/fetchQuote.js';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -101,6 +102,7 @@ export default function Header(props) {
 	const currentDay = moment().format('dddd');
 
 	useEffect(() => {
+		fetchQuote('msft');
 		console.log(time);
 		if (
 			time > 1330 &&
